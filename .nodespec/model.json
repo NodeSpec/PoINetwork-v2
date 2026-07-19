@@ -1,7 +1,7 @@
 {
   "modelVersion": 1,
   "generatedBy": "nodespec",
-  "modelHash": "7ba18aa273799a7738651792095bb2881e838b56ea513cf0aacb00f80c7742f4",
+  "modelHash": "fd4a740ce57cda9a7b82b48208065601213bd690977c8aadb0fecf707abd3fbd",
   "nodes": [
     {
       "id": "b0000000-0000-4000-8000-000000000a01",
@@ -56,6 +56,18 @@
       "path": "schema.json",
       "kind": "schema",
       "contentHash": "0000000000364492"
+    },
+    {
+      "id": "f0000000-1111-4111-8111-000000000003",
+      "nodeId": "b0000000-0000-4000-8000-000000000a01",
+      "path": "tasks/api-service-tasks.md",
+      "kind": "task"
+    },
+    {
+      "id": "f0000000-1111-4111-8111-000000000004",
+      "nodeId": "b0000000-0000-4000-8000-000000000a02",
+      "path": "tasks/primary-database-tasks.md",
+      "kind": "task"
     }
   ],
   "mappings": [

@@ -7,8 +7,8 @@ component inventory, connection topology, and links to per-component task docume
 
 | Component | Role | Technology | Parent | Task Document | Test Plan |
 |-----------|------|------------|--------|---------------|-----------|
-| API Service | backend-service | --- | --- | --- | --- |
-| Primary Database | database | --- | --- | --- | --- |
+| API Service | backend-service | --- | --- | [`tasks/api-service-tasks.md`](./tasks/api-service-tasks.md) | --- |
+| Primary Database | database | --- | --- | [`tasks/primary-database-tasks.md`](./tasks/primary-database-tasks.md) | --- |
 
 ## Connection Topology
 
