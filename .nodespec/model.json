@@ -1,0 +1,76 @@
+{
+  "modelVersion": 1,
+  "generatedBy": "nodespec",
+  "modelHash": "7ba18aa273799a7738651792095bb2881e838b56ea513cf0aacb00f80c7742f4",
+  "nodes": [
+    {
+      "id": "b0000000-0000-4000-8000-000000000a01",
+      "type": "backend-service",
+      "label": "API Service",
+      "ports": [
+        {
+          "id": "b0000000-0000-4000-8000-000000000f01",
+          "name": "DB queries",
+          "direction": "out"
+        }
+      ],
+      "contentHash": "77aa304c9490ac587df8acb2bfe36fc44cf3fbf3fa533a407bd1630bda3c30e3"
+    },
+    {
+      "id": "b0000000-0000-4000-8000-000000000a02",
+      "type": "database",
+      "label": "Primary Database",
+      "ports": [
+        {
+          "id": "b0000000-0000-4000-8000-000000000f02",
+          "name": "SQL interface",
+          "direction": "in"
+        }
+      ],
+      "contentHash": "3ebc66b79a41f2cd5ea9d37aa05e6521e6155d438b38fb77b3258bf3a9e6f168"
+    }
+  ],
+  "edges": [
+    {
+      "id": "b0000000-0000-4000-8000-000000000e01",
+      "source": "b0000000-0000-4000-8000-000000000a01",
+      "target": "b0000000-0000-4000-8000-000000000a02",
+      "contractId": "b0000000-0000-4000-8000-000000000c01",
+      "sourcePortId": "b0000000-0000-4000-8000-000000000f01",
+      "targetPortId": "b0000000-0000-4000-8000-000000000f02",
+      "contentHash": "7b3daa1daa7e22c2ec60f170cfe3b078ae3afe1747330367e9a709dea582b602"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "b0000000-0000-4000-8000-000000000c01",
+      "kind": "sql",
+      "name": "Task storage queries",
+      "contentHash": "255f67651c68b14403d41e05b487a4810a277ca664f2af0929e111fb1f63dafb"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "82e37d86-c96c-44bc-a291-53c10df24a1f",
+      "nodeId": "b0000000-0000-4000-8000-000000000a02",
+      "path": "schema.json",
+      "kind": "schema",
+      "contentHash": "0000000000364492"
+    }
+  ],
+  "mappings": [
+    {
+      "requirementId": "REQ-001",
+      "nodeIds": [
+        "b0000000-0000-4000-8000-000000000a01",
+        "b0000000-0000-4000-8000-000000000a02"
+      ]
+    },
+    {
+      "requirementId": "REQ-002",
+      "nodeIds": [
+        "b0000000-0000-4000-8000-000000000a01"
+      ]
+    }
+  ]
+}
