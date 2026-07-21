@@ -15,3 +15,12 @@ component inventory, connection topology, and links to per-component task docume
 | Source | Target | Protocol | Contract |
 |--------|--------|----------|----------|
 | API Service | Primary Database | sql | Task storage queries |
+
+## Task Documents
+
+Each component has a task document containing the full implementation context:
+requirements, contracts, technology guidance, and connected components.
+Use these as the primary brief when implementing or modifying a component.
+
+- **API Service**: [`tasks/api-service-tasks.md`](./tasks/api-service-tasks.md)
+- **Primary Database**: [`tasks/primary-database-tasks.md`](./tasks/primary-database-tasks.md)

@@ -1,7 +1,7 @@
 {
   "modelVersion": 1,
   "generatedBy": "nodespec",
-  "modelHash": "fd4a740ce57cda9a7b82b48208065601213bd690977c8aadb0fecf707abd3fbd",
+  "modelHash": "5db545195e0749b803f03a464f4139efc1db2ae5237b7ae5b963c865a702d183",
   "nodes": [
     {
       "id": "b0000000-0000-4000-8000-000000000a01",
@@ -46,25 +46,28 @@
       "id": "b0000000-0000-4000-8000-000000000c01",
       "kind": "sql",
       "name": "Task storage queries",
-      "contentHash": "255f67651c68b14403d41e05b487a4810a277ca664f2af0929e111fb1f63dafb"
+      "interactionKind": "data_read",
+      "transport": "sql",
+      "specFormat": "sql_ddl",
+      "contentHash": "56dca4c905bb540b0a8f8d03bc4dfc9de0ca716f8f52680e2d4be2545fc9ecc8"
     }
   ],
   "artifacts": [
     {
-      "id": "82e37d86-c96c-44bc-a291-53c10df24a1f",
+      "id": "b517b124-b204-48ba-ba3c-2e93340c0360",
       "nodeId": "b0000000-0000-4000-8000-000000000a02",
-      "path": "schema.json",
+      "path": "schema",
       "kind": "schema",
-      "contentHash": "0000000000364492"
+      "contentHash": "0000000000000000"
     },
     {
-      "id": "f0000000-1111-4111-8111-000000000003",
+      "id": "f0000000-1111-4111-8111-00000000000b",
       "nodeId": "b0000000-0000-4000-8000-000000000a01",
       "path": "tasks/api-service-tasks.md",
       "kind": "task"
     },
     {
-      "id": "f0000000-1111-4111-8111-000000000004",
+      "id": "f0000000-1111-4111-8111-00000000000c",
       "nodeId": "b0000000-0000-4000-8000-000000000a02",
       "path": "tasks/primary-database-tasks.md",
       "kind": "task"
