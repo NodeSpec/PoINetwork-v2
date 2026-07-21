@@ -6,7 +6,7 @@
 - [ ] Verify a task created before a service restart is still retrievable after restart (durability check against Primary Database)
 
 ## REQ-002: Expose a REST interface
-- [ ] Ensure all endpoints accept and return `application/json`
+- [X] Ensure all endpoints accept and return `application/json`
 - [ ] Add request validation middleware (reject malformed JSON with 400)
 - [ ] Add consistent error response shape across endpoints
 
