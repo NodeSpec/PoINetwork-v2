@@ -7,7 +7,7 @@
 
 ## REQ-002: Expose a REST interface
 - [X] Ensure all endpoints accept and return `application/json`
-- [ ] Add request validation middleware (reject malformed JSON with 400)
+- [X] Add request validation middleware (reject malformed JSON with 400)
 - [ ] Add consistent error response shape across endpoints
 
 ## Open Dependency
