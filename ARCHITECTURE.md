@@ -7,19 +7,18 @@ component inventory, connection topology, and links to per-component task docume
 
 | Component | Role | Technology | Parent | Task Document | Test Plan |
 |-----------|------|------------|--------|---------------|-----------|
-| API Service | backend-service | --- | --- | --- | --- |
+| API Service | backend-service | --- | AWS | --- | --- |
 | Primary Database | database | --- | --- | --- | --- |
-| AWS API Gateway | api-gateway | aws-api-gateway | AWS | --- | --- |
 
 ## Containment Hierarchy
 
 - **AWS** (aws)
-  - **AWS API Gateway** [aws-api-gateway] (api-gateway)
-- API Service (backend-service)
+  - **API Service** (backend-service)
 - Primary Database (database)
 
 ## Connection Topology
 
 | Source | Target | Protocol | Contract |
 |--------|--------|----------|----------|
+| API Service | Primary Database | sql | API Service → Primary Database |
 | API Service | Primary Database | sql | Task storage queries |

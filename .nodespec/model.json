@@ -1,7 +1,7 @@
 {
   "modelVersion": 1,
   "generatedBy": "nodespec",
-  "modelHash": "f9920450d9645965cee29cee9ca2d3acfeea46d2cf460aef04324e0f859f47f4",
+  "modelHash": "d4850ab6c7c8a6dc33457838a93c1919e734390d9dd31ad68f61dab3f8c7d938",
   "nodes": [
     {
       "id": "9355fd74-42c4-4900-b2a4-e10424ceeff3",
@@ -14,6 +14,8 @@
       "id": "b0000000-0000-4000-8000-000000000a01",
       "type": "backend-service",
       "label": "API Service",
+      "parentId": "9355fd74-42c4-4900-b2a4-e10424ceeff3",
+      "placementKind": "hosts",
       "ports": [
         {
           "id": "b0000000-0000-4000-8000-000000000f01",
@@ -21,7 +23,7 @@
           "direction": "out"
         }
       ],
-      "contentHash": "77aa304c9490ac587df8acb2bfe36fc44cf3fbf3fa533a407bd1630bda3c30e3"
+      "contentHash": "7bfa3a6d883776e063c53e98ebed9b9234e44e7d8a980ed98b7d8b2ba880ca56"
     },
     {
       "id": "b0000000-0000-4000-8000-000000000a02",
@@ -35,29 +37,20 @@
         }
       ],
       "contentHash": "3ebc66b79a41f2cd5ea9d37aa05e6521e6155d438b38fb77b3258bf3a9e6f168"
-    },
-    {
-      "id": "b110ed90-0c36-4866-aadd-a3a09a7660d9",
-      "type": "api-gateway",
-      "label": "AWS API Gateway",
-      "technology": "aws-api-gateway",
-      "parentId": "9355fd74-42c4-4900-b2a4-e10424ceeff3",
-      "ports": [
-        {
-          "id": "706b5ff2-880f-4540-822f-4f8db2edf981",
-          "name": "Service Route",
-          "direction": "out"
-        },
-        {
-          "id": "74e54b3d-9e86-40ce-9759-e30e2559893b",
-          "name": "Public In",
-          "direction": "in"
-        }
-      ],
-      "contentHash": "904713eb4f7ffce9d44409e87c5e4a7c4ce7c50c6cb49296f226ad01da74eb8d"
     }
   ],
   "edges": [
+    {
+      "id": "26492425-cbb3-41ad-92f7-05a7eb2c4a95",
+      "source": "b0000000-0000-4000-8000-000000000a01",
+      "target": "b0000000-0000-4000-8000-000000000a02",
+      "contractId": "a62c205a-7786-40b5-a30f-b7c47629eee2",
+      "sourcePortId": "b0000000-0000-4000-8000-000000000f01",
+      "targetPortId": "b0000000-0000-4000-8000-000000000f02",
+      "label": "API Service → Primary Database",
+      "direction": "bidirectional",
+      "contentHash": "edc8e17a654610e0edbfcd86613538a4eec16a3d7b084cf62c71e6ffa9abe75d"
+    },
     {
       "id": "b0000000-0000-4000-8000-000000000e01",
       "source": "b0000000-0000-4000-8000-000000000a01",
@@ -80,10 +73,50 @@
       "contentHash": "eaf9689f800dce1497ef4b8ef301fea8c1f0178d03c2083493fc801df94cac99"
     },
     {
+      "id": "77779e2b-d905-412f-b40e-f11354a61402",
+      "kind": "amqp",
+      "name": "amqp contract",
+      "interactionKind": "queue",
+      "transport": "amqp",
+      "specFormat": "asyncapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "c34b822c09c0ac1553635dc18439a27c04b90a75c3a70355384983fdce977434"
+    },
+    {
+      "id": "a62c205a-7786-40b5-a30f-b7c47629eee2",
+      "kind": "sql",
+      "name": "API Service → Primary Database",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "5d0bc0fdfec5a20aea4929751e529bd2de2580c10fbb8ecc1fdbfad1b198d3e2"
+    },
+    {
       "id": "b0000000-0000-4000-8000-000000000c01",
       "kind": "sql",
       "name": "Task storage queries",
       "contentHash": "255f67651c68b14403d41e05b487a4810a277ca664f2af0929e111fb1f63dafb"
+    },
+    {
+      "id": "b0834d5a-c001-4001-8001-b0834d5a0000",
+      "kind": "amqp",
+      "name": "Stub: AMQP In",
+      "interactionKind": "queue",
+      "transport": "amqp",
+      "specFormat": "asyncapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "9a7b1ffb281f69f23e32b42a9052da19879c736119f808ff3081d860b40effa5"
+    },
+    {
+      "id": "fcfd2c70-c001-4001-8001-fcfd2c700000",
+      "kind": "dependency",
+      "name": "Stub: DEPENDENCY In",
+      "interactionKind": "dependency",
+      "transport": "none",
+      "specFormat": "none",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "a6108a80f56bc21eff3d3a104a812bfc9d9e45d62e1cba7ea3b393e31eed6ba6"
     }
   ],
   "artifacts": [],
