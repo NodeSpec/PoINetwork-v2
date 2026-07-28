@@ -7,83 +7,19 @@ component inventory, connection topology, and links to per-component task docume
 
 | Component | Role | Technology | Parent | Task Document | Test Plan |
 |-----------|------|------------|--------|---------------|-----------|
-| Stripe | external-service | stripe | --- | --- | --- |
-| Supabase | database | supabase-db | Supabase (Managed) | --- | --- |
-| Route 53 | dns | aws-route53 | AWS | [`.nodespec/tasks/route-53-d1a00000.task.md`](./.nodespec/tasks/route-53-d1a00000.task.md) | --- |
-| CloudFront | cdn | aws-cloudfront | AWS | [`.nodespec/tasks/cloudfront-d1a00000.task.md`](./.nodespec/tasks/cloudfront-d1a00000.task.md) | --- |
-| Frontend Static Assets | object-storage | aws-s3 | AWS | [`.nodespec/tasks/frontend-static-assets-d1a00000.task.md`](./.nodespec/tasks/frontend-static-assets-d1a00000.task.md) | --- |
-| Primary Database | database | aws-rds-postgresql | VPC | [`.nodespec/tasks/primary-database-d1a00000.task.md`](./.nodespec/tasks/primary-database-d1a00000.task.md) | --- |
-| API Gateway | api-gateway | aws-api-gateway | AWS | [`.nodespec/tasks/api-gateway-e3c00000.task.md`](./.nodespec/tasks/api-gateway-e3c00000.task.md) | --- |
-| API Functions | serverless-function | aws-lambda | VPC | [`.nodespec/tasks/api-functions-e3c00000.task.md`](./.nodespec/tasks/api-functions-e3c00000.task.md) | --- |
-| Cognito User Pool | auth-provider | aws-cognito | AWS | [`.nodespec/tasks/cognito-user-pool-e3c00000.task.md`](./.nodespec/tasks/cognito-user-pool-e3c00000.task.md) | --- |
-| Job Queue | queue | rabbitmq | AWS | [`.nodespec/tasks/job-queue-e3c00000.task.md`](./.nodespec/tasks/job-queue-e3c00000.task.md) | --- |
-| Application Storage | object-storage | aws-s3 | AWS | [`.nodespec/tasks/application-storage-e3c00000.task.md`](./.nodespec/tasks/application-storage-e3c00000.task.md) | --- |
-| AWS WAF | load-balancer | aws-waf | AWS | [`.nodespec/tasks/aws-waf-e3c00000.task.md`](./.nodespec/tasks/aws-waf-e3c00000.task.md) | --- |
-| Secrets Manager | auth-provider | aws-secrets-manager | AWS | [`.nodespec/tasks/secrets-manager-e3c00000.task.md`](./.nodespec/tasks/secrets-manager-e3c00000.task.md) | --- |
-| Heavy Job Worker | serverless-function | aws-lambda | VPC | [`.nodespec/tasks/route-53-e5f00000.task.md`](./.nodespec/tasks/route-53-e5f00000.task.md) | --- |
-| Frontend App | frontend-app | react | AWS | [`.nodespec/tasks/frontend-app-fa000000.task.md`](./.nodespec/tasks/frontend-app-fa000000.task.md) | --- |
+| API Service | backend-service | --- | --- | --- | --- |
+| Primary Database | database | --- | --- | --- | --- |
+| AWS API Gateway | api-gateway | aws-api-gateway | AWS | --- | --- |
 
 ## Containment Hierarchy
 
-- **Supabase (Managed)** (supabase)
-  - **Supabase** [supabase-db] (database)
-- **AWS** [aws] (aws)
-  - **VPC** [aws-vpc] (vpc)
-    - **Primary Database** [aws-rds-postgresql] (database)
-    - **API Functions** [aws-lambda] (serverless-function)
-    - **Heavy Job Worker** [aws-lambda] (serverless-function)
-  - **Route 53** [aws-route53] (dns)
-  - **CloudFront** [aws-cloudfront] (cdn)
-  - **Frontend Static Assets** [aws-s3] (object-storage)
-  - **API Gateway** [aws-api-gateway] (api-gateway)
-  - **Cognito User Pool** [aws-cognito] (auth-provider)
-  - **Job Queue** [rabbitmq] (queue)
-  - **Application Storage** [aws-s3] (object-storage)
-  - **AWS WAF** [aws-waf] (load-balancer)
-  - **Secrets Manager** [aws-secrets-manager] (auth-provider)
-  - **Frontend App** [react] (frontend-app)
-- Stripe (external-service)
+- **AWS** (aws)
+  - **AWS API Gateway** [aws-api-gateway] (api-gateway)
+- API Service (backend-service)
+- Primary Database (database)
 
 ## Connection Topology
 
 | Source | Target | Protocol | Contract |
 |--------|--------|----------|----------|
-| Route 53 | CloudFront | dependency | DNS Resolution |
-| CloudFront | Frontend Static Assets | rest | CDN Static Origin |
-| Frontend App | Frontend Static Assets | dependency | Build Artifact Deployment |
-| CloudFront | Frontend App | rest | CDN Delivery |
-| Frontend App | API Gateway | rest | API Calls |
-| Frontend App | Cognito User Pool | dependency | Auth SDK |
-| CloudFront | API Gateway | rest | Dynamic API Requests |
-| API Gateway | API Functions | rest | Invoke Lambda |
-| API Gateway | Cognito User Pool | dependency | Token Authorization |
-| API Functions | Primary Database | sql | App Data Queries |
-| API Functions | Application Storage | rest | User File Access |
-| API Functions | Job Queue | custom | Enqueue Heavy Job |
-| API Functions | Secrets Manager | dependency | Retrieve DB Credentials |
-| CloudFront | AWS WAF | dependency | WAF Protection |
-| Job Queue | Heavy Job Worker | custom | Consume Job Messages |
-| Heavy Job Worker | Primary Database | sql | Worker Data Queries |
-| Heavy Job Worker | Secrets Manager | dependency | Retrieve DB Credentials (Worker) |
-
-## Task Documents
-
-Each component has a task document containing the full implementation context:
-requirements, contracts, technology guidance, and connected components.
-Use these as the primary brief when implementing or modifying a component.
-
-- **Route 53**: [`.nodespec/tasks/route-53-d1a00000.task.md`](./.nodespec/tasks/route-53-d1a00000.task.md)
-- **Frontend Static Assets**: [`.nodespec/tasks/frontend-static-assets-d1a00000.task.md`](./.nodespec/tasks/frontend-static-assets-d1a00000.task.md)
-- **Frontend App**: [`.nodespec/tasks/frontend-app-fa000000.task.md`](./.nodespec/tasks/frontend-app-fa000000.task.md)
-- **API Gateway**: [`.nodespec/tasks/api-gateway-e3c00000.task.md`](./.nodespec/tasks/api-gateway-e3c00000.task.md)
-- **Job Queue**: [`.nodespec/tasks/job-queue-e3c00000.task.md`](./.nodespec/tasks/job-queue-e3c00000.task.md)
-- **AWS**: [`.nodespec/tasks/aws-ab000000.task.md`](./.nodespec/tasks/aws-ab000000.task.md)
-- **VPC**: [`.nodespec/tasks/vpc-ab000000.task.md`](./.nodespec/tasks/vpc-ab000000.task.md)
-- **Application Storage**: [`.nodespec/tasks/application-storage-e3c00000.task.md`](./.nodespec/tasks/application-storage-e3c00000.task.md)
-- **Cognito User Pool**: [`.nodespec/tasks/cognito-user-pool-e3c00000.task.md`](./.nodespec/tasks/cognito-user-pool-e3c00000.task.md)
-- **CloudFront**: [`.nodespec/tasks/cloudfront-d1a00000.task.md`](./.nodespec/tasks/cloudfront-d1a00000.task.md)
-- **Heavy Job Worker**: [`.nodespec/tasks/route-53-e5f00000.task.md`](./.nodespec/tasks/route-53-e5f00000.task.md)
-- **Secrets Manager**: [`.nodespec/tasks/secrets-manager-e3c00000.task.md`](./.nodespec/tasks/secrets-manager-e3c00000.task.md)
-- **API Functions**: [`.nodespec/tasks/api-functions-e3c00000.task.md`](./.nodespec/tasks/api-functions-e3c00000.task.md)
-- **AWS WAF**: [`.nodespec/tasks/aws-waf-e3c00000.task.md`](./.nodespec/tasks/aws-waf-e3c00000.task.md)
-- **Primary Database**: [`.nodespec/tasks/primary-database-d1a00000.task.md`](./.nodespec/tasks/primary-database-d1a00000.task.md)
+| API Service | Primary Database | sql | Task storage queries |
