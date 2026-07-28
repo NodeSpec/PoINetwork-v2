@@ -7,17 +7,12 @@ component inventory, connection topology, and links to per-component task docume
 
 | Component | Role | Technology | Parent | Task Document | Test Plan |
 |-----------|------|------------|--------|---------------|-----------|
-| Backend Service | backend-service | python-backend | AWS | --- | --- |
+| Rust | backend-service | rust-backend | --- | --- | --- |
+| AWS | aws | --- | --- | --- | --- |
 | PostgreSQL | database | postgresql | --- | --- | --- |
-
-## Containment Hierarchy
-
-- **AWS** (aws)
-  - **Backend Service** [python-backend] (backend-service)
-- PostgreSQL (database)
 
 ## Connection Topology
 
 | Source | Target | Protocol | Contract |
 |--------|--------|----------|----------|
-| Backend Service | PostgreSQL | sql | Backend Service → PostgreSQL |
+| Rust | PostgreSQL | sql | Rust → PostgreSQL |

@@ -1,49 +1,48 @@
 {
   "modelVersion": 1,
   "generatedBy": "nodespec",
-  "modelHash": "28030df4dc0680fda61e569c821f508f09ad73be06f836c51796bb0a7cbcceed",
+  "modelHash": "51a5f7aef5bd905158196f2795cbffc52b28cdcf545cc9db753243d5928214e3",
   "nodes": [
+    {
+      "id": "29b3ea58-724d-415d-b5f8-e5b8914684be",
+      "type": "backend-service",
+      "label": "Rust",
+      "technology": "rust-backend",
+      "ports": [
+        {
+          "id": "1897691c-88e1-43a3-b2ae-13cc4cd8016e",
+          "name": "Module Dependency",
+          "direction": "out"
+        },
+        {
+          "id": "8bfb7fd9-8b3b-4d31-8a77-6fc56ef46427",
+          "name": "Database",
+          "direction": "out"
+        },
+        {
+          "id": "c2415f87-99b8-4d18-8715-cc36947f68a8",
+          "name": "HTTP In",
+          "direction": "in"
+        },
+        {
+          "id": "c552f2a8-33d0-4a0c-80bd-2ebbdfd811fa",
+          "name": "Service Import",
+          "direction": "in"
+        },
+        {
+          "id": "fc95cb2d-739d-4d39-a34e-cfc17bb755c6",
+          "name": "Cache",
+          "direction": "out"
+        }
+      ],
+      "contentHash": "e745d0d0f8990507b2c8745cc855562722f6cd00e4c87e6cc16292ef8e803fe3"
+    },
     {
       "id": "9355fd74-42c4-4900-b2a4-e10424ceeff3",
       "type": "aws",
       "label": "AWS",
       "ports": [],
       "contentHash": "057e6bcaa28bea90f7ce3a08bffe6a13e3f872722b0ccf1631ae2d3a88cc9227"
-    },
-    {
-      "id": "b9d74eb9-d73a-44a6-8109-46cfb3559cde",
-      "type": "backend-service",
-      "label": "Backend Service",
-      "technology": "python-backend",
-      "parentId": "9355fd74-42c4-4900-b2a4-e10424ceeff3",
-      "ports": [
-        {
-          "id": "3c36c6fd-3ffe-426c-9bdc-6ae3e7cd4af2",
-          "name": "Cache",
-          "direction": "out"
-        },
-        {
-          "id": "6989ded7-aa34-45e2-ae4b-77fe9db06a26",
-          "name": "Service Import",
-          "direction": "in"
-        },
-        {
-          "id": "85263a7c-8ab3-40ac-8938-b9b23980fb8f",
-          "name": "HTTP In",
-          "direction": "in"
-        },
-        {
-          "id": "f517c692-3ccb-4937-bb2c-d66e82a88f39",
-          "name": "Module Dependency",
-          "direction": "out"
-        },
-        {
-          "id": "f8307374-73b1-4d91-ab5a-31addd901d74",
-          "name": "Database",
-          "direction": "out"
-        }
-      ],
-      "contentHash": "88c95a37c3361ea539836b753b437e33c09a4816295b7e50c6b187039c161dd8"
     },
     {
       "id": "c707fe9d-17a2-43a3-880b-a3484161ba06",
@@ -67,26 +66,26 @@
   ],
   "edges": [
     {
-      "id": "24d4921d-2d69-4005-bd39-59af23565249",
-      "source": "b9d74eb9-d73a-44a6-8109-46cfb3559cde",
+      "id": "134d37b6-f7b4-44e5-8fe2-6ad0ddca37d0",
+      "source": "29b3ea58-724d-415d-b5f8-e5b8914684be",
       "target": "c707fe9d-17a2-43a3-880b-a3484161ba06",
-      "contractId": "4a20bb07-da0d-4db4-b823-8207cbdb74df",
-      "sourcePortId": "f517c692-3ccb-4937-bb2c-d66e82a88f39",
+      "contractId": "01b0a229-f265-4392-ad99-c5d4a44de476",
+      "sourcePortId": "1897691c-88e1-43a3-b2ae-13cc4cd8016e",
       "targetPortId": "c707fe9d-a001-4001-8001-c707fe9d0000",
-      "label": "Backend Service → PostgreSQL",
-      "contentHash": "6f0529da274d9cf8c1a9899a8b6fca610660453d2322a67fb2c3a452b718b625"
+      "label": "Rust → PostgreSQL",
+      "contentHash": "c76d5142bd80f15ee2e7e6a5c0fe58f2a41c6c99401c98fdefcbef0d71b8e2e8"
     }
   ],
   "contracts": [
     {
-      "id": "4a20bb07-da0d-4db4-b823-8207cbdb74df",
+      "id": "01b0a229-f265-4392-ad99-c5d4a44de476",
       "kind": "sql",
-      "name": "Backend Service → PostgreSQL",
+      "name": "Rust → PostgreSQL",
       "interactionKind": "data_read",
       "transport": "sql",
       "specFormat": "sql_ddl",
       "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "contentHash": "cf5bf3f3726463e7749a5ab94a2f8fa10a14a84ee0cf045315aaaa925ace3ee5"
+      "contentHash": "8a63d5280ca63c1f069c7a3f31b0a289ed5babb561b5a096547f70825aade6b4"
     }
   ],
   "artifacts": [
