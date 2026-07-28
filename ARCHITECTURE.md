@@ -21,4 +21,3 @@ component inventory, connection topology, and links to per-component task docume
 | Source | Target | Protocol | Contract |
 |--------|--------|----------|----------|
 | API Service | Primary Database | sql | API Service → Primary Database |
-| API Service | Primary Database | sql | Task storage queries |

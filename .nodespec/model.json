@@ -1,7 +1,7 @@
 {
   "modelVersion": 1,
   "generatedBy": "nodespec",
-  "modelHash": "d4850ab6c7c8a6dc33457838a93c1919e734390d9dd31ad68f61dab3f8c7d938",
+  "modelHash": "b05d12daef5455beb5957617c52afbb03e69d1b7376b6c56660eac68963c2012",
   "nodes": [
     {
       "id": "9355fd74-42c4-4900-b2a4-e10424ceeff3",
@@ -41,24 +41,14 @@
   ],
   "edges": [
     {
-      "id": "26492425-cbb3-41ad-92f7-05a7eb2c4a95",
+      "id": "583e5025-eed0-404e-b4b9-274d9ccb03dd",
       "source": "b0000000-0000-4000-8000-000000000a01",
       "target": "b0000000-0000-4000-8000-000000000a02",
-      "contractId": "a62c205a-7786-40b5-a30f-b7c47629eee2",
+      "contractId": "8b12cd9d-5762-4832-aede-7be31b037e50",
       "sourcePortId": "b0000000-0000-4000-8000-000000000f01",
       "targetPortId": "b0000000-0000-4000-8000-000000000f02",
       "label": "API Service → Primary Database",
-      "direction": "bidirectional",
-      "contentHash": "edc8e17a654610e0edbfcd86613538a4eec16a3d7b084cf62c71e6ffa9abe75d"
-    },
-    {
-      "id": "b0000000-0000-4000-8000-000000000e01",
-      "source": "b0000000-0000-4000-8000-000000000a01",
-      "target": "b0000000-0000-4000-8000-000000000a02",
-      "contractId": "b0000000-0000-4000-8000-000000000c01",
-      "sourcePortId": "b0000000-0000-4000-8000-000000000f01",
-      "targetPortId": "b0000000-0000-4000-8000-000000000f02",
-      "contentHash": "7b3daa1daa7e22c2ec60f170cfe3b078ae3afe1747330367e9a709dea582b602"
+      "contentHash": "fcdf2566539478822cf687d8a29da8991b70d89f78c9a2098a805f7dc2a4fefc"
     }
   ],
   "contracts": [
@@ -83,14 +73,14 @@
       "contentHash": "c34b822c09c0ac1553635dc18439a27c04b90a75c3a70355384983fdce977434"
     },
     {
-      "id": "a62c205a-7786-40b5-a30f-b7c47629eee2",
+      "id": "8b12cd9d-5762-4832-aede-7be31b037e50",
       "kind": "sql",
       "name": "API Service → Primary Database",
       "interactionKind": "data_read",
       "transport": "http",
       "specFormat": "json_schema",
       "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "contentHash": "5d0bc0fdfec5a20aea4929751e529bd2de2580c10fbb8ecc1fdbfad1b198d3e2"
+      "contentHash": "d59d6f38ccc42c1f3aa5e77bd224034ce676704f8788516c5cb656f7bc6d6c1b"
     },
     {
       "id": "b0000000-0000-4000-8000-000000000c01",
