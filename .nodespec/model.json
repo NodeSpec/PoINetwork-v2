@@ -1,47 +1,1244 @@
 {
   "modelVersion": 1,
   "generatedBy": "nodespec",
-  "modelHash": "5db545195e0749b803f03a464f4139efc1db2ae5237b7ae5b963c865a702d183",
+  "modelHash": "04cbb6d2a4c0ba5cb3d632c611a0bd948716140db910e88c43d64fd71576d3b6",
   "nodes": [
     {
-      "id": "b0000000-0000-4000-8000-000000000a01",
-      "type": "backend-service",
-      "label": "API Service",
+      "id": "5995f77d-ab3f-4510-acc0-32e5e36afba1",
+      "type": "external-service",
+      "label": "Stripe",
+      "technology": "stripe",
       "ports": [
         {
-          "id": "b0000000-0000-4000-8000-000000000f01",
-          "name": "DB queries",
+          "id": "f0081b8a-76b0-44bd-8544-fa5941f4eeb9",
+          "name": "API Call",
           "direction": "out"
         }
       ],
-      "contentHash": "77aa304c9490ac587df8acb2bfe36fc44cf3fbf3fa533a407bd1630bda3c30e3"
+      "contentHash": "5636d9b8777dd438324f224fc7055b1a64e615157072cbf1af450e8449370bdc"
     },
     {
-      "id": "b0000000-0000-4000-8000-000000000a02",
+      "id": "6786618f-e1f8-476e-84b2-083ad7136691",
       "type": "database",
-      "label": "Primary Database",
+      "label": "Supabase",
+      "technology": "supabase-db",
+      "parentId": "9c4f68cf-539c-40e7-90f4-99b7ac452cfa",
       "ports": [
         {
-          "id": "b0000000-0000-4000-8000-000000000f02",
-          "name": "SQL interface",
+          "id": "6786618f-a001-4001-8001-6786618f0000",
+          "name": "Query",
+          "direction": "in"
+        },
+        {
+          "id": "6786618f-a002-4002-8001-6786618f0000",
+          "name": "Replication",
+          "direction": "out"
+        }
+      ],
+      "contentHash": "b3d5ba52c61b1bfef9fbb2f59be424b4016ccbf3acb49b274f9eb4084c985325"
+    },
+    {
+      "id": "9c4f68cf-539c-40e7-90f4-99b7ac452cfa",
+      "type": "supabase",
+      "label": "Supabase (Managed)",
+      "ports": [],
+      "contentHash": "2c182b9949e3f1c3d59e5846119c8eb71457766c3b9331eef706634b2e4669b7"
+    },
+    {
+      "id": "ab000000-0000-4000-8000-000000000001",
+      "type": "aws",
+      "label": "AWS",
+      "technology": "aws",
+      "ports": [],
+      "contentHash": "78cb4c12f6f4a010c154dcfbb763fdcf13e6430085674a5be2e7066b9096fc85"
+    },
+    {
+      "id": "ab000000-0000-4000-8000-000000000002",
+      "type": "vpc",
+      "label": "VPC",
+      "technology": "aws-vpc",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [],
+      "contentHash": "2c9e0e3af45d19e04765d71db9938da5bb01c3299d573772da153be35d39370b"
+    },
+    {
+      "id": "d1a00000-0000-4000-8000-000000000001",
+      "type": "dns",
+      "label": "Route 53",
+      "technology": "aws-route53",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "2d6c2e29-cf77-45a4-ba70-63780801eb75",
+          "name": "dns-out",
+          "direction": "out"
+        },
+        {
+          "id": "cabb842b-25bb-4720-81a2-f3bf3654f785",
+          "name": "dns-in",
           "direction": "in"
         }
       ],
-      "contentHash": "3ebc66b79a41f2cd5ea9d37aa05e6521e6155d438b38fb77b3258bf3a9e6f168"
+      "contentHash": "a62d890026d5fafc083594774c37d764071454373e48ac0fd5d59209f41a384d"
+    },
+    {
+      "id": "d1a00000-0000-4000-8000-000000000002",
+      "type": "cdn",
+      "label": "CloudFront",
+      "technology": "aws-cloudfront",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "2c5fa1be-9bf1-458d-a592-ff6b8e75ef83",
+          "name": "Origin",
+          "direction": "in"
+        },
+        {
+          "id": "ba494034-a742-48bc-8d79-c9b19b0087e7",
+          "name": "Edge",
+          "direction": "out"
+        }
+      ],
+      "contentHash": "2eed604cd3bdee6af158446754272ff09edcf5ca79c83aad02bf270b87929035"
+    },
+    {
+      "id": "d1a00000-0000-4000-8000-000000000003",
+      "type": "object-storage",
+      "label": "Frontend Static Assets",
+      "technology": "aws-s3",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "9db4597b-af10-40f5-9a1e-c2fbbdb6cf1c",
+          "name": "Download Out",
+          "direction": "out"
+        },
+        {
+          "id": "d81fbd2c-b4d0-4b8d-b550-9ce420b61957",
+          "name": "Upload In",
+          "direction": "in"
+        }
+      ],
+      "contentHash": "b4036890df67063d04533bece316924bd7b308d1c4bac3ee0c60377df847cca8"
+    },
+    {
+      "id": "d1a00000-0000-4000-8000-000000000006",
+      "type": "database",
+      "label": "Primary Database",
+      "technology": "aws-rds-postgresql",
+      "parentId": "ab000000-0000-4000-8000-000000000002",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "1136969d-7d4a-424a-981e-e668e0dba478",
+          "name": "Query",
+          "direction": "in"
+        },
+        {
+          "id": "91a53375-e8b1-486f-b98b-f44d3ac3dee3",
+          "name": "Replication",
+          "direction": "out"
+        }
+      ],
+      "contentHash": "87b6804de35da03e7b2fffab9ffec41d437bbb95ebc1c59bfd782c4cb6f58e75"
+    },
+    {
+      "id": "e3c00000-0000-4000-8000-000000000001",
+      "type": "api-gateway",
+      "label": "API Gateway",
+      "technology": "aws-api-gateway",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "b454eaca-0c47-40bb-ae20-0be42c5d9b59",
+          "name": "Service Route",
+          "direction": "out"
+        },
+        {
+          "id": "ec6883ba-d5d5-43d4-9af3-58e166ade127",
+          "name": "Public In",
+          "direction": "in"
+        }
+      ],
+      "contentHash": "379c9335c1ea51049d6a57040841ed06a20ab979266ece6932b127b74110cb9e"
+    },
+    {
+      "id": "e3c00000-0000-4000-8000-000000000002",
+      "type": "serverless-function",
+      "label": "API Functions",
+      "technology": "aws-lambda",
+      "parentId": "ab000000-0000-4000-8000-000000000002",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "597d96bd-227c-4041-89bb-79c437b30ece",
+          "name": "output",
+          "direction": "out"
+        },
+        {
+          "id": "707537c5-719f-4d08-acc2-59ad8e595098",
+          "name": "input",
+          "direction": "in"
+        }
+      ],
+      "contentHash": "3ef4e7d8314e4977164e2659735a4248ffca1aaa824028debeb61103b88f3f28"
+    },
+    {
+      "id": "e3c00000-0000-4000-8000-000000000003",
+      "type": "auth-provider",
+      "label": "Cognito User Pool",
+      "technology": "aws-cognito",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "61fc92b2-8f88-4f75-be94-164d04a6f3ad",
+          "name": "Token",
+          "direction": "out"
+        },
+        {
+          "id": "953f1fe7-4f50-4861-94b7-e933c9b16432",
+          "name": "Auth Request",
+          "direction": "in"
+        }
+      ],
+      "contentHash": "727510956e4f4bf1187f2babb18c351245262ae479a6f41763a0c254220e6c0a"
+    },
+    {
+      "id": "e3c00000-0000-4000-8000-000000000004",
+      "type": "queue",
+      "label": "Job Queue",
+      "technology": "rabbitmq",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "ddb5cb53-d8d2-4be1-ad6d-0683128cfc83",
+          "name": "dequeue",
+          "direction": "out"
+        },
+        {
+          "id": "e05d64c8-6e4c-4fc1-9608-a63eafbdec6f",
+          "name": "enqueue",
+          "direction": "in"
+        }
+      ],
+      "contentHash": "248075d552f5ea5156c252159591b0376b94ca6456c9ab1671d5b99e9b00d11a"
+    },
+    {
+      "id": "e3c00000-0000-4000-8000-000000000005",
+      "type": "object-storage",
+      "label": "Application Storage",
+      "technology": "aws-s3",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "6e756262-1a28-431e-84ab-ec4091b724c3",
+          "name": "Download Out",
+          "direction": "out"
+        },
+        {
+          "id": "df0be218-ee29-47dd-9828-d3b1517704dd",
+          "name": "Upload In",
+          "direction": "in"
+        }
+      ],
+      "contentHash": "734a5aa9d0002954bbeef1fddd1135c13e521cc8ce619496090edbe4459b82c3"
+    },
+    {
+      "id": "e3c00000-0000-4000-8000-000000000006",
+      "type": "load-balancer",
+      "label": "AWS WAF",
+      "technology": "aws-waf",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "12ac471b-911b-4038-b10a-6ee901e8a3a1",
+          "name": "Backend",
+          "direction": "out"
+        },
+        {
+          "id": "441ef0e9-cab7-4599-8640-694c59e229ba",
+          "name": "Traffic In",
+          "direction": "in"
+        }
+      ],
+      "contentHash": "158a4bf6997a46b8af7387a4b7c246718bd9a944e689e05f18c8088e8ecb9c92"
+    },
+    {
+      "id": "e3c00000-0000-4000-8000-000000000007",
+      "type": "auth-provider",
+      "label": "Secrets Manager",
+      "technology": "aws-secrets-manager",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "5e774f28-ab9d-4d75-9be1-b935d4078955",
+          "name": "Auth Request",
+          "direction": "in"
+        },
+        {
+          "id": "97b6cac2-e4fd-435a-9f06-75058887acd1",
+          "name": "Token",
+          "direction": "out"
+        }
+      ],
+      "contentHash": "647c2f20ba796ea2a9c477190d0f2350bf1074c7c841675dd3debfd7174b146f"
+    },
+    {
+      "id": "e5f00000-0000-4000-8000-000000000001",
+      "type": "serverless-function",
+      "label": "Heavy Job Worker",
+      "technology": "aws-lambda",
+      "parentId": "ab000000-0000-4000-8000-000000000002",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "03e855f9-ea16-4ba9-936e-3cb4d7d1d164",
+          "name": "input",
+          "direction": "in"
+        },
+        {
+          "id": "e445d329-9037-41ac-bac9-bd23262cea31",
+          "name": "output",
+          "direction": "out"
+        }
+      ],
+      "contentHash": "1d05e362f1edba743a372c6aee2b946f59a3e30a3ae68e6f558aecedf990efe5"
+    },
+    {
+      "id": "fa000000-0000-4000-8000-000000000001",
+      "type": "frontend-app",
+      "label": "Frontend App",
+      "technology": "react",
+      "parentId": "ab000000-0000-4000-8000-000000000001",
+      "placementKind": "contains",
+      "ports": [
+        {
+          "id": "3accb253-fa7a-449d-ad45-64d4f6f8d4a1",
+          "name": "Service Import",
+          "direction": "in"
+        },
+        {
+          "id": "665ee21b-2642-4332-857f-34c9896a0825",
+          "name": "Module Dependency",
+          "direction": "out"
+        },
+        {
+          "id": "a6143892-7cfd-46ef-a8d7-2ea59ae12d9e",
+          "name": "API Call",
+          "direction": "out"
+        },
+        {
+          "id": "cd11637b-04f0-4c85-890c-7b05fb572adf",
+          "name": "HTTP In",
+          "direction": "in"
+        }
+      ],
+      "contentHash": "ea77f1a7f03406087d9bd271ac6aca4d04bcf6ff0323774929de89a8841d9a84"
     }
   ],
   "edges": [
     {
-      "id": "b0000000-0000-4000-8000-000000000e01",
-      "source": "b0000000-0000-4000-8000-000000000a01",
-      "target": "b0000000-0000-4000-8000-000000000a02",
-      "contractId": "b0000000-0000-4000-8000-000000000c01",
-      "sourcePortId": "b0000000-0000-4000-8000-000000000f01",
-      "targetPortId": "b0000000-0000-4000-8000-000000000f02",
-      "contentHash": "7b3daa1daa7e22c2ec60f170cfe3b078ae3afe1747330367e9a709dea582b602"
+      "id": "e2b00000-0000-4000-8000-000000000001",
+      "source": "d1a00000-0000-4000-8000-000000000001",
+      "target": "d1a00000-0000-4000-8000-000000000002",
+      "contractId": "c1000000-0000-4000-8000-000000000001",
+      "label": "DNS resolution",
+      "contentHash": "71003b8bfbea9e65987be48288ef621dd59fc7bd895e33ca0068ba58d8c093db"
+    },
+    {
+      "id": "e2b00000-0000-4000-8000-000000000003",
+      "source": "d1a00000-0000-4000-8000-000000000002",
+      "target": "d1a00000-0000-4000-8000-000000000003",
+      "contractId": "c1000000-0000-4000-8000-000000000003",
+      "label": "Static asset origin",
+      "contentHash": "85f30bd5eb5d6e0c35ae4f38c7aa0a41b29a19fb5bef580d96887b85eaf1db71"
+    },
+    {
+      "id": "eb000000-0000-4000-8000-000000000001",
+      "source": "fa000000-0000-4000-8000-000000000001",
+      "target": "d1a00000-0000-4000-8000-000000000003",
+      "contractId": "cb000000-0000-4000-8000-000000000001",
+      "label": "Deploy build artifacts",
+      "contentHash": "a1475f87511f9bb5ecc2f5941e6a53d3fba76a4827d1e0c2c6e310dd6dbe63c3"
+    },
+    {
+      "id": "eb000000-0000-4000-8000-000000000002",
+      "source": "d1a00000-0000-4000-8000-000000000002",
+      "target": "fa000000-0000-4000-8000-000000000001",
+      "contractId": "cb000000-0000-4000-8000-000000000002",
+      "label": "Delivers SPA to browser",
+      "contentHash": "ef754aeaceba9341449db4dc3913c65568e275a3bc93ca6694b9aa632707d584"
+    },
+    {
+      "id": "eb000000-0000-4000-8000-000000000003",
+      "source": "fa000000-0000-4000-8000-000000000001",
+      "target": "e3c00000-0000-4000-8000-000000000001",
+      "contractId": "cb000000-0000-4000-8000-000000000003",
+      "label": "Data API calls",
+      "contentHash": "8df13b34cc1d7695a9775104d1ab63b530ba2d9cb0f0acc3525d6599672629d1"
+    },
+    {
+      "id": "eb000000-0000-4000-8000-000000000004",
+      "source": "fa000000-0000-4000-8000-000000000001",
+      "target": "e3c00000-0000-4000-8000-000000000003",
+      "contractId": "cb000000-0000-4000-8000-000000000004",
+      "label": "Auth SDK",
+      "contentHash": "03389cbb5e633bbc60deadf2d060f5d51b3ce3a7669627c8ba951d1bc0a69fc7"
+    },
+    {
+      "id": "f4d00000-0000-4000-8000-000000000001",
+      "source": "d1a00000-0000-4000-8000-000000000002",
+      "target": "e3c00000-0000-4000-8000-000000000001",
+      "contractId": "c2000000-0000-4000-8000-000000000001",
+      "label": "Dynamic API requests",
+      "contentHash": "c3cbfc3a18d9b0e7fe5f868a179f2ab08c47140dc9efc6f96eddc249e2e9b8c0"
+    },
+    {
+      "id": "f4d00000-0000-4000-8000-000000000002",
+      "source": "e3c00000-0000-4000-8000-000000000001",
+      "target": "e3c00000-0000-4000-8000-000000000002",
+      "contractId": "c2000000-0000-4000-8000-000000000002",
+      "label": "Invoke",
+      "contentHash": "57a7501977f07c330af68c0153fc8c55c77299db5b17ece5ea433d6e155f2bac"
+    },
+    {
+      "id": "f4d00000-0000-4000-8000-000000000003",
+      "source": "e3c00000-0000-4000-8000-000000000001",
+      "target": "e3c00000-0000-4000-8000-000000000003",
+      "contractId": "c2000000-0000-4000-8000-000000000003",
+      "label": "Authorize",
+      "contentHash": "0bd0d358907de2655b23602e5729efa3ffe77ecde9e763c25b48bfc89e79a1b4"
+    },
+    {
+      "id": "f4d00000-0000-4000-8000-000000000004",
+      "source": "e3c00000-0000-4000-8000-000000000002",
+      "target": "d1a00000-0000-4000-8000-000000000006",
+      "contractId": "c2000000-0000-4000-8000-000000000004",
+      "label": "App data queries",
+      "contentHash": "34b734d36f830af4ae0e800406b09184cd0d402deaf40709a65101dd1a5ca78f"
+    },
+    {
+      "id": "f4d00000-0000-4000-8000-000000000005",
+      "source": "e3c00000-0000-4000-8000-000000000002",
+      "target": "e3c00000-0000-4000-8000-000000000005",
+      "contractId": "c2000000-0000-4000-8000-000000000005",
+      "label": "User file access",
+      "contentHash": "2389dc795728818e07056fe45fadfe4bf4c88f0b654861bf823bf475c3ce6162"
+    },
+    {
+      "id": "f4d00000-0000-4000-8000-000000000006",
+      "source": "e3c00000-0000-4000-8000-000000000002",
+      "target": "e3c00000-0000-4000-8000-000000000004",
+      "contractId": "c2000000-0000-4000-8000-000000000006",
+      "label": "Enqueue heavy job",
+      "contentHash": "8bb3cb3d71a69fb36cab9a07db9e67ec54e8685958d04ed26f91c8a4474fe100"
+    },
+    {
+      "id": "f4d00000-0000-4000-8000-000000000009",
+      "source": "e3c00000-0000-4000-8000-000000000002",
+      "target": "e3c00000-0000-4000-8000-000000000007",
+      "contractId": "c2000000-0000-4000-8000-000000000009",
+      "label": "Retrieve credentials",
+      "contentHash": "0424e813d79b69967803867bd67d5883289024a238bd7adb5a99d9ce9975474a"
+    },
+    {
+      "id": "f4d00000-0000-4000-8000-000000000011",
+      "source": "d1a00000-0000-4000-8000-000000000002",
+      "target": "e3c00000-0000-4000-8000-000000000006",
+      "contractId": "c2000000-0000-4000-8000-000000000011",
+      "label": "WAF protection",
+      "contentHash": "f9bb9abebb3f443e65e276b2a1c9c9e1b234887c42f78873586b53b6f73a541d"
+    },
+    {
+      "id": "f6a00000-0000-4000-8000-000000000001",
+      "source": "e3c00000-0000-4000-8000-000000000004",
+      "target": "e5f00000-0000-4000-8000-000000000001",
+      "contractId": "c2000000-0000-4000-8000-000000000007",
+      "label": "Consume messages",
+      "contentHash": "3e81959373a7b234249534f2fd88675633d9962c73c4270a2c97254f8397f30a"
+    },
+    {
+      "id": "f6a00000-0000-4000-8000-000000000002",
+      "source": "e5f00000-0000-4000-8000-000000000001",
+      "target": "d1a00000-0000-4000-8000-000000000006",
+      "contractId": "c2000000-0000-4000-8000-000000000008",
+      "label": "Worker data queries",
+      "contentHash": "4e062051cac101823d0311687efeacd3f3c67cc264b814073701b952e19c1621"
+    },
+    {
+      "id": "f6a00000-0000-4000-8000-000000000003",
+      "source": "e5f00000-0000-4000-8000-000000000001",
+      "target": "e3c00000-0000-4000-8000-000000000007",
+      "contractId": "c2000000-0000-4000-8000-000000000010",
+      "label": "Retrieve credentials",
+      "contentHash": "fa23916758a8168e8abf4731a5f71b421e22561bee1c650aa6eb5a8269c12cb0"
     }
   ],
   "contracts": [
+    {
+      "id": "0288677f-12e6-4b3a-b582-4ea7f07b979a",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "b4cc1a4028c835cdf257d1cb316cf8f765f69e8c0e93cd5799139372308ede69"
+    },
+    {
+      "id": "061ff4af-b055-4247-8a56-5b9202313962",
+      "kind": "ipc",
+      "name": "ipc contract",
+      "interactionKind": "ipc",
+      "transport": "ipc",
+      "specFormat": "custom",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "06a7d79cc019e38f5d2872566d3ee5f4e23c7a10eb1482ab802c32dc0e333419"
+    },
+    {
+      "id": "06fff7a8-40ab-43d7-8ffe-3adc56260b3c",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "5b4c63f00b04ad09ef1a8c17d46be8102b05eb75ec30dc389eaa4fa4d453e865"
+    },
+    {
+      "id": "084ea424-c001-4001-8001-084ea4240000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "c87beb13e0f0a7afc1889444d3f5124556d4326d223caa383eca10bb30a0689f"
+    },
+    {
+      "id": "093a00e8-c001-4001-8001-093a00e80000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "4e43ec418aeb5337551e843e0ee9e53f1c3e7e32e32b388ae829bf9f4abaaa83"
+    },
+    {
+      "id": "09a0b1b8-6bbf-4290-a254-23ac98998ba8",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "910fd867d8228eff7c41291e1517c2d7938abc588186dc2b9861d5f77b81c03d"
+    },
+    {
+      "id": "0b0e5fb8-5581-4b03-a562-2ee79ffabdb0",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "1498c3156e617ff06cacaaa0fb149d01d6dcdd587f156b5ce3f695d896b60450"
+    },
+    {
+      "id": "0caa3c92-bd76-4831-9921-4f4739dc6bc6",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "2b46a9cf5847917994ad5737e80d820e965ca8e1613a31774e94c95cfb853345"
+    },
+    {
+      "id": "0cc5ea71-c001-4001-8001-0cc5ea710000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "37cf3cd1587615312960055504df10eb8dcc5d3911a989141ee4e831af0aee19"
+    },
+    {
+      "id": "0cc5ea71-c002-4001-8001-0cc5ea710000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "8b70e140f43d9d65aa5a255abcd0c9578c645f165ee07031947d3a8ec5b51deb"
+    },
+    {
+      "id": "0d411041-287c-41cc-a4ad-49c28a675ec5",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "8b1b8dd2dc7629ad06d6e7f230f5e4507d9a29c64849a7c405de3a0ecb2d934a"
+    },
+    {
+      "id": "0f61e65b-c001-4001-8001-0f61e65b0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "05686112b17e7bf954c5c958ab38ced08d98ddc578c9a3442a7a0954e5884bbc"
+    },
+    {
+      "id": "10687c05-c001-4001-8001-10687c050000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "1544f6afdc93ce110ddd69dafb1c7cba03103972bcc83bddc129cec1fb36ccac"
+    },
+    {
+      "id": "125b1034-c001-4001-8001-125b10340000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "f530cd992c38e0f6a39ecddf4b0887156edd8fe2ded905c4ff87f9b10cefd09b"
+    },
+    {
+      "id": "125b1034-c002-4001-8001-125b10340000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "interactionKind": "file_transfer",
+      "transport": "http",
+      "specFormat": "custom",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "ba6bffad313b31a287456a95b7401fa63a3f6c230e5698b34b3277134002bf92"
+    },
+    {
+      "id": "137a802d-63c6-4a43-b0d5-4bf60b054fdb",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "92f994e79fecf6e026cea35374cd866658ee67d290752884cca14286c3d7c915"
+    },
+    {
+      "id": "1786016c-3ba2-473a-9c6a-d69f30b2eb94",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "cb99a1328fde389401a917a7bcc1df4a90d93844f727242f95b84f8f91b2eb55"
+    },
+    {
+      "id": "180e4b84-b6b2-4994-83b7-385ad3c410b0",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "8e7198a73b476ae3c8f026d90cad677194c96d6f905fae4e45a421f719fccc79"
+    },
+    {
+      "id": "187bddf9-7d9d-482d-903c-029f03f42450",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "47389581393a39df702ad4aef3c586c2d0760138b6e661e8bb963420c613c874"
+    },
+    {
+      "id": "1a542951-c001-4001-8001-1a5429510000",
+      "kind": "dependency",
+      "name": "Stub: DEPENDENCY In",
+      "interactionKind": "dependency",
+      "transport": "none",
+      "specFormat": "none",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "10646c1a77859996b3e3d1e2909ac2a3fe94c1d0dd862e999434066805a0ba5f"
+    },
+    {
+      "id": "1b820331-5252-4565-a969-def29351151b",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "8332d3090a68bf2336e69458628453fb40c85f1afc301618125ce20d67a189cc"
+    },
+    {
+      "id": "1e422cc5-cb80-417d-a737-4965f66496b9",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "a16e439ece1d799f620df1fc685f2dd6c9e171370781dfdb387159c9c0282074"
+    },
+    {
+      "id": "20bc69c5-c001-4001-8001-20bc69c50000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "ccf5bdcc6322d7c4aaf050aba71be7cf01de97ea990f0e6e83d562745153b981"
+    },
+    {
+      "id": "20d2febc-c001-4001-8001-20d2febc0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "fe5b726a9beec91d8c45cc9fa0a0c901b5d9c335ad8c65a636b8c9400e459364"
+    },
+    {
+      "id": "20d2febc-c002-4001-8001-20d2febc0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "interactionKind": "file_transfer",
+      "transport": "http",
+      "specFormat": "custom",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "57c23948321635f9daf0587ad0cb19a29adacce94cb22aae25d300ae06cb9bf5"
+    },
+    {
+      "id": "227b569d-c162-4d29-ac6e-2f4c79583672",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "35234fd7cffa7fb9a09ea655295c74a96f2d81d900c7a79d8d3d349712bd4fc7"
+    },
+    {
+      "id": "2564dafd-554a-4d44-a195-09e1ad0052e5",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "2638c9494e508d0c139fb1b5a7d4c479df444668946d9d60db12b5e7d8df55e9"
+    },
+    {
+      "id": "294254fc-8c50-4ee7-a4ae-f51e72544924",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "981a49c9b3ff9e0d58917a8117c8288ec0e293bce47cbbc881f3a69d36182514"
+    },
+    {
+      "id": "2abbe41d-c001-4001-8001-2abbe41d0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "d17bebfb9f0221a19f18b2bee5d401f0c1d2a1b52931bf0c034c64c69487dc8f"
+    },
+    {
+      "id": "2f161d21-bc98-42d7-824d-b5b1b52abac5",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "4a85fc58486916feaf77537fbdcbbe11171957f2dad5e867a9214b5dbfd665b0"
+    },
+    {
+      "id": "35155489-d126-48bb-ad68-e1b1844c6dc1",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "494d3a73e3276a4e993a35492ad3f60952eafbe26b6b29f9c1368a982a5343aa"
+    },
+    {
+      "id": "35c28111-fd0d-452c-867f-658c2f1b7e47",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "549e593853447dbb2efc06bb98610c61a3d9a0649645a32460f7611256817011"
+    },
+    {
+      "id": "368fe8b2-b107-4c57-83a8-10b21cedabe1",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "91dc035e1af3fa691537d441dc16757932feed9e0f2c4adecaefed69fcd23fb7"
+    },
+    {
+      "id": "375238bc-4972-41f0-8331-401da63bd701",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "23b247703f994bc8dee4922e47097872c2c5e4754b25204bbbcbb7690e2c489f"
+    },
+    {
+      "id": "3c92cef7-c001-4001-8001-3c92cef70000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "5ac10fa7fc6a12c2bc34abdc0ee957de78a99f952c3dda6fde359228427d49f2"
+    },
+    {
+      "id": "3d3d719c-c001-4001-8001-3d3d719c0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "1fbcda5073bc5dd679f572d4c9d8b59d9a62e7afb0c32a15c75d6303001d7181"
+    },
+    {
+      "id": "3f10092c-8e69-41e7-b8cf-41e84da5d4b5",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "8ebbc4c2c8138fa940bbe6d531f2a210d03a1e4aeb46a05f6cc0e55f72e5e2ab"
+    },
+    {
+      "id": "412f8869-9a38-4f6b-8e06-1fee15d2eef9",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "91eaa3ebf0812c2d4b8b15f696bb92fba2744bfee1f02cc6fe1e2e4fb70721e0"
+    },
+    {
+      "id": "45b310c2-eed2-4f3b-85d7-adb082fc3214",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "e27e310b1a6c7198e25d6e2910d27b9749c73037021de55bd6f434bb1a7ff09c"
+    },
+    {
+      "id": "46c3a30f-c001-4001-8001-46c3a30f0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "b864a65d0656004f935df848e4b740969766362fa19b1d997d6de610f8870594"
+    },
+    {
+      "id": "46c3a30f-c002-4001-8001-46c3a30f0000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "42010acd0cc4fe8a1bf3f95ff4669bcd87b3caa43796ab78fd9455d042a7d661"
+    },
+    {
+      "id": "482d6509-8ea9-4950-92fc-6bf1e71ff3bf",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "21993f4180d2b6a3b415d3e30fd5cda312a8804b4ea988043e510526723e15cb"
+    },
+    {
+      "id": "4a6f285a-473f-43a1-8f39-8589035a4b8c",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "d15068be6c723551e46f0da86ca4efa04fc4cb1ba1b5ed48e9cc0d929258ac52"
+    },
+    {
+      "id": "55b4385d-7d15-498f-9eb4-56d5b056bf22",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "ee1ae7fbb8ae89f1bcf3286d2d931499c5c3569f910170a9ac641f893258cfcd"
+    },
+    {
+      "id": "587d1705-c001-4001-8001-587d17050000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "e8baf3e8209dc7b314eab772ec18fd0fddaba5be4571cc3606aef9ef4308a7f9"
+    },
+    {
+      "id": "5e14c598-6f34-4cd0-b26d-9caee65f1c0d",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "9ada199dc2aaf4a9f046aef5a39424c8bf51a8e72b65580c21745947958db12a"
+    },
+    {
+      "id": "5e47d4a1-5c11-49eb-9bc8-15d4a7b455a0",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "9f256940f40669c9d436de5658ecbca1d8f733acfe64670fc359f431e3b55e10"
+    },
+    {
+      "id": "5eff2207-c001-4001-8001-5eff22070000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "27dd2b6aa303009d5b8e68872eec5d2eae56a0b98ad4c151f7fa36daa0c1aad8"
+    },
+    {
+      "id": "602e6469-befe-46e8-9b6e-d55f6628cfaa",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "49f635e1fdcbe8c5f696981d2efaa71318c4bc3e559d98c1bf5ea06c3697c168"
+    },
+    {
+      "id": "621a8af5-c001-4001-8001-621a8af50000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "f971c83ae6a87c87b7e4b03ca4006f22ebe756357b8dce507862cfb526906778"
+    },
+    {
+      "id": "621a8af5-c002-4001-8001-621a8af50000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "fe3ce11d87e964f3a4257f8d89ddbdd1c6f15633686f7dbbc20faae508745012"
+    },
+    {
+      "id": "64878092-df87-4bbb-8794-540e056f9f38",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "b441af11d798d2235f29592fe9519720dc71e40c63a5d39cd4652fd4a7cae4fa"
+    },
+    {
+      "id": "6786618f-c001-4001-8001-6786618f0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "8604620cbe65c6be0ace27ee910503592b98c305766abc893fcbb033237cbcda"
+    },
+    {
+      "id": "67ae7272-9bf4-41d6-9683-19c4177183dc",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "d9e659139b13010118a5046d138aacbe4712a4856b70126182706e80b63beae3"
+    },
+    {
+      "id": "691e9d02-c001-4001-8001-691e9d020000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "309faa7bfad4cb5328a3fa040dec08f9df33db6f2037cd61f9394677bd18b662"
+    },
+    {
+      "id": "691e9d02-c002-4001-8001-691e9d020000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "dedf1750ccb6d25daa33cac3b8835c086dbe3f4439b44c44976bb6d877385f15"
+    },
+    {
+      "id": "69c27b39-fc80-4392-b39a-a02c55a01a7d",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "47bc04d8434105560d92fd96d2aae998fe6f090068e080ef0cdb3ee575eb988b"
+    },
+    {
+      "id": "6a876988-c001-4001-8001-6a8769880000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "f611cc46f8180d74a9070dfd038f94b36d757203c9daab4f4f3409b91d8518d8"
+    },
+    {
+      "id": "6a876988-c002-4001-8001-6a8769880000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "11399f02db8ac0899473621c92923ae5d862990ef785811480e4afb6dba924ac"
+    },
+    {
+      "id": "6a876988-c003-4001-8001-6a8769880000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "1dcbcf79f52901bbbdf2d841c769ab9f1058ee53b9dc1f025a3b0f1db2cefbc5"
+    },
+    {
+      "id": "6b6f896a-c001-4001-8001-6b6f896a0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "12d2d613c70d2def35518c618125b1be48c679437ee73344154c8743dfe9bc53"
+    },
+    {
+      "id": "6cb5b0de-d29c-4304-8145-c86da946c815",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "88e0ccb6a10f7476c6389fdb97b8be72f0d78ce8cfa4aa64dc2a471f7e5ec5e6"
+    },
+    {
+      "id": "70359960-38f2-401d-b8a9-1eea74440239",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "ea08ce4fb822271e4543ee8c74ad15e8cdf89dcf0fbe6e21c3088d86889775ee"
+    },
+    {
+      "id": "72d32e3c-c2b5-4fd8-908c-803034eb6aff",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "40e6104c81b424da2f33f811adf3128b774495d8e5316cf4cc68e4cc72752c03"
+    },
+    {
+      "id": "73ed8f55-124d-4723-a124-2174d7fb2f0b",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "e9d0316215ae385a1d80835525f8b5bea6020c65805a6ea5220234f48727da70"
+    },
+    {
+      "id": "7450d56c-c001-4001-8001-7450d56c0000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "5aa8daec28fa6e797f4ac949fff64b1cef746534361a5189f26ab4ff2264443b"
+    },
+    {
+      "id": "7450d56c-c002-4001-8001-7450d56c0000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "318638d08923f927643f583b327d676659bb7083491319e805c6a26d62a5a1da"
+    },
+    {
+      "id": "7664288d-a3e4-433a-8a5d-42a93c85fd06",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "6af33f491e008a722a4d81946b83b9bc86ef67becf6dbc3a085fed7ac83a82fc"
+    },
+    {
+      "id": "776930ff-c063-4949-ace8-ed5c446cb30e",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "a4a50b4cbf5527416ee5b68b11d95834b3aafcecf89653cdc4b7dc97f3305fe0"
+    },
+    {
+      "id": "7a49dc4c-c001-4001-8001-7a49dc4c0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "d19eb876239ea96797a7aaa06114c657dc0411a2700020f5d8cabc58e8ed2dd6"
+    },
+    {
+      "id": "7d019d7a-ad8c-4abb-9b17-c264ff82269a",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "6708795a04bbfccd70ea3bf29492ce9e13893034643edfcecfb48b26f63352d8"
+    },
+    {
+      "id": "7e0146e0-7495-4be7-9963-5ada2e350136",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "1e8a791cce76c66de40637d67926bcb2af9099f9af177c8048c6111d3c4f08d9"
+    },
+    {
+      "id": "845ce8f9-c001-4001-8001-845ce8f90000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "1702dde028c3f235ebe4a847ac90e0945c11eca35721491d136478dcea57cbad"
+    },
+    {
+      "id": "845ce8f9-c002-4001-8001-845ce8f90000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "4c5cae1c9f73e83ae881d9dff6c1c5c9f9e802575a62d49a13f093575747572f"
+    },
+    {
+      "id": "8562d977-c001-4001-8001-8562d9770000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "4521a826b354c5481a85e6db1baa4fb224397c4b7a2a28391d8f71d2dba08ec5"
+    },
+    {
+      "id": "8562d977-c002-4001-8001-8562d9770000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "f6890be0693339e6ca0cb4ff35eaf442498037c2baee0cbf32fb8aa9cf302ef9"
+    },
+    {
+      "id": "86681a09-c001-4001-8001-86681a090000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "75459c7a254d23b1cbf8d055fb2f9a11f8847edfc7faf44f5315e54c0e1e0aab"
+    },
+    {
+      "id": "86681a09-c002-4001-8001-86681a090000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "interactionKind": "file_transfer",
+      "transport": "http",
+      "specFormat": "custom",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "717663907708236a4c6a2717b78ccd81d4b78a7d79996ea48cbcecda49bd38a7"
+    },
+    {
+      "id": "86ba042b-c001-4001-8001-86ba042b0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "9079e6960a2a40d66085ec5731f792dff66675c5f4fbdccfd554f101db08de73"
+    },
+    {
+      "id": "8a81fd58-1b3e-4e99-a9c9-3fa87b97ec7d",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "b4014ace08d0e7d132019fbc04cef89e36c8cf3d1b58329b7826e2d9a1ccfb96"
+    },
+    {
+      "id": "92003d2f-c6a7-4d09-a2a6-4b6321fa892c",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "a1a7ca89214905b672d00e8e2aef36ac32cb3a0bf235e3e3acd840d88942fc05"
+    },
+    {
+      "id": "9664617c-c001-4001-8001-9664617c0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "ad25bf6020e08f2e215e6b1aa5bc0d4b125ec62f4ae00a6a968b60a76f06c5f1"
+    },
+    {
+      "id": "9a46222a-15c9-418f-8795-7fab9564c596",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "251f089bd223e0c4f47fc654ed3c4387372a16da71183560cd5d56f47e844e4d"
+    },
+    {
+      "id": "9b18d51c-c001-4001-8001-9b18d51c0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "7b19d36305e9f1502108946c4f4083ea2b9750e9f810cd2a7846acc77fea3ea4"
+    },
+    {
+      "id": "9ce3879a-f64e-46fa-814a-61fc9d69fea2",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "f5a72865a8ef93c5f3f740582b44e8112460b5176695f1b8671c7d4aed013c98"
+    },
+    {
+      "id": "9dd7483f-f58c-4727-ace3-af8894e31a71",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "49341886d0e8f2af1b5fde7de1dc7b8aebeb2c5770e4879851b4341d2ca5f60e"
+    },
+    {
+      "id": "a347fe8f-5629-4e20-8959-707bd32d4eb6",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "cff7d34ef5b96ea9f213e05b1ef643007e6c1b49cdb2f7159d12ff01e1ce8ccb"
+    },
+    {
+      "id": "a4cc1589-c001-4001-8001-a4cc15890000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "26b7df11a5bab8d756304e88670b9ca28ec6dbe65bb7be9cf1edd461d0aa798f"
+    },
+    {
+      "id": "a4cc1589-c002-4001-8001-a4cc15890000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "d87962d7260de462ea79aeef1294b18018064eb7d913cac4a37d3812c3a829b1"
+    },
+    {
+      "id": "a57461d3-0c16-4a6f-8e47-a78ee54006ff",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "6a03c240f82b3867b69f20b3a2233ed7f0a306c0688bdc21291ac517580df05d"
+    },
+    {
+      "id": "a88f4216-c001-4001-8001-a88f42160000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "5fb50e3223a8bb5c23252c33c52ebcaddb3d80534e10f7fba769a58d6991fcda"
+    },
     {
       "id": "b0000000-0000-4000-8000-000000000c01",
       "kind": "sql",
@@ -50,41 +1247,854 @@
       "transport": "sql",
       "specFormat": "sql_ddl",
       "contentHash": "56dca4c905bb540b0a8f8d03bc4dfc9de0ca716f8f52680e2d4be2545fc9ecc8"
+    },
+    {
+      "id": "b11b87d0-240a-442a-a89d-4b57664f7d78",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "950ec9c790f3423527d5a939dbecdae175cb0e0cd24098f046b8946f5630d584"
+    },
+    {
+      "id": "b399e9f0-3744-4c73-be07-19ff45b8ab94",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "a9d6ca2be65cafed06f6fd80f23a8dd6774303e59969fc8fc3f18b086cf92fb3"
+    },
+    {
+      "id": "b3c52ba4-0461-4bdb-b77d-2b286e822564",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "52a194ff32d1e463c60008fbbc85147caba7acdfff2bfc173fa18c781950e28d"
+    },
+    {
+      "id": "b49598ae-c001-4001-8001-b49598ae0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "ec9eaad17b85100198dc8f6fb4b5322b9645bd82fb8e103fda3a1a7cfe50bb99"
+    },
+    {
+      "id": "b746dead-6810-4681-8abf-5553c3fd229b",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "d1ff7b1243785b51d909bbe99aa2735ffff2f4fb21d1b91a2bb6680543a6de5b"
+    },
+    {
+      "id": "b85bf67d-b779-48da-a58a-5b2b8335f596",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "1f653f454a313a2656b31716519ddf7764100a73c6eb1d97d0877da7d2cc31e8"
+    },
+    {
+      "id": "b91cf728-13bc-4064-9c20-ddd8d5ebded8",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "019687cfc79429416b8fdbe59bf97286aa3bc6d608af4e6d2c2880284f8ad3de"
+    },
+    {
+      "id": "bc207ab1-c001-4001-8001-bc207ab10000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "b4d02378b26b533e311fd05a3a9d8d317ea4bf9c07c7ec6e3ca055ed5a6f3a98"
+    },
+    {
+      "id": "bc207ab1-c002-4001-8001-bc207ab10000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "bbc85c9ad3fc4605416a25989b7a9c0ce5c8a4d0c492cdede6f99eff18233e24"
+    },
+    {
+      "id": "bd60552e-8880-434a-aef9-32e54645645a",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "c4d2a23bd389674cbd87b2a4e7e2878d2994f0aadf93c0c2282c6af9900816c0"
+    },
+    {
+      "id": "c1000000-0000-4000-8000-000000000001",
+      "kind": "dependency",
+      "name": "DNS Resolution",
+      "schemaHash": "ca3e7a70f921e77c72ac21302f1736640bf3c406426fc4ca4e1567faa52d236a",
+      "contentHash": "d2f25352f8e0b4e3d6f8f91846e1df48ee28bcd6fbbfa4607bf2498612f75db5"
+    },
+    {
+      "id": "c1000000-0000-4000-8000-000000000003",
+      "kind": "rest",
+      "name": "CDN Static Origin",
+      "schemaHash": "01743de934f2332b9634e91d9ee398c598334f2c814327bcd6ab466f38b06b4a",
+      "contentHash": "a82736084cf1140d6dbc146737b781514ef20d7d310102d5ac79de3ae9c33cc0"
+    },
+    {
+      "id": "c1c8dab2-6cf2-4c6d-a82a-2c002441be1d",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "2b4bb9dec48590b46d4d465c06877f14208cb083d75e33f76a38bc229d1b752c"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000001",
+      "kind": "rest",
+      "name": "Dynamic API Requests",
+      "schemaHash": "65eb877ad002055fd43c9990a6a06a3466feb668f32ad919f5d9d2fb7686d62b",
+      "contentHash": "b11ec5439a0209a695ce302479ccd96a45cb3f06a2b8b562fa4e782baf54148c"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000002",
+      "kind": "rest",
+      "name": "Invoke Lambda",
+      "schemaHash": "fbf24962da7913b22263c07dc12d8f00fe6ed426b93ccff07292df8e1f1e0ea4",
+      "contentHash": "536a89f4a9d6c31dc86ef78e8d79cbf0f450ba9b8ea69707157f028ecabf9b17"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000003",
+      "kind": "dependency",
+      "name": "Token Authorization",
+      "schemaHash": "063b3f3bf8d383f916779c0406be12cc046704a9d3fee83781b3609cdf66222e",
+      "contentHash": "d85c384895bce17cc2a13e04172cb4acac827b6fe0c89dada0617bfc901beae7"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000004",
+      "kind": "sql",
+      "name": "App Data Queries",
+      "schemaHash": "2e731b90831bc86c8edd03263f8d44c7e80eba946bc620a1590552e8ec4138ac",
+      "contentHash": "1e0e71280bd3a1f0207564172e4234224fd95e295ffa9f8a0314c40d56fba46b"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000005",
+      "kind": "rest",
+      "name": "User File Access",
+      "schemaHash": "64aad98382e0ac20ce19c77a05b953e3443aae92038fc70c026f209acc96fc37",
+      "contentHash": "5b765dc1b447f2228ced6577ee52a9349c6704ac1a7b759dcc1e000dcc610d36"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000006",
+      "kind": "custom",
+      "name": "Enqueue Heavy Job",
+      "schemaHash": "ec0a8b94cf23d52027702d12aed5256a52ac3bf5ae36ba0d4d70b959440c469d",
+      "contentHash": "6e90b975c1783f700ebc737ea00abeacfd0c16c2bb8e2974623bbd4cdfe592c7"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000007",
+      "kind": "custom",
+      "name": "Consume Job Messages",
+      "schemaHash": "c723825175face9cb9a83b538143719adebf946bc80ee50bb06879e0640287e7",
+      "contentHash": "a665b2306f564b72820a7be02187f5b98f770a26364bb1539b34b2267312976d"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000008",
+      "kind": "sql",
+      "name": "Worker Data Queries",
+      "schemaHash": "7c7fe17a52261cc49468087222d82733c7d73133c94f27435348e55c446cdced",
+      "contentHash": "7e76c95b55db1cd546414d5a7c6539864f993bb991d628e60688a380650ca0bb"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000009",
+      "kind": "dependency",
+      "name": "Retrieve DB Credentials",
+      "schemaHash": "50fc65f282bfc14226ff08270498c522520f99719d7f1efa8cc783e5052687b7",
+      "contentHash": "3f770fffdb584fb5d21e73a59c139938b8f18ce94b01f35c95b859128b588156"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000010",
+      "kind": "dependency",
+      "name": "Retrieve DB Credentials (Worker)",
+      "schemaHash": "c0d40ea2837a51feb1def82375d8631734f68bec71fbc1c232f715860cbc7492",
+      "contentHash": "6cd46f7dfe6b8ebe16b027a0d5ea9ace7b787ec807a8a56f1081dd7e71ed0e05"
+    },
+    {
+      "id": "c2000000-0000-4000-8000-000000000011",
+      "kind": "dependency",
+      "name": "WAF Protection",
+      "schemaHash": "9f73a793ef03ddc333ea483e1d739df8e36afd7386c40be0dd8269e5f517fd2d",
+      "contentHash": "581b4ab77bacfd8cf692f36c42289d790436923f71f76e8d4568115d40b1c9d3"
+    },
+    {
+      "id": "c96bc751-c001-4001-8001-c96bc7510000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "2a2f63d650e0693f21d18e9bd86fd0f09b4b32abb669825daed672d28a7c8f04"
+    },
+    {
+      "id": "c9fe194b-165b-44be-9178-ade9c07235c4",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "30f59626f36a01085ceeecc07fb5b7f3df73dbfaac2f06f4c3581b17ca2b633c"
+    },
+    {
+      "id": "ca3f8e79-c001-4001-8001-ca3f8e790000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_write",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "ab0b7060fafda346aa0d4c7ce5b5a2da801cc27ca550c723c0dbd62dab22c204"
+    },
+    {
+      "id": "ca3f8e79-c002-4001-8001-ca3f8e790000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "390c405e8ac5d0549fef2e8ab832050109e95827fc405a75c8c16bafd135be51"
+    },
+    {
+      "id": "cb000000-0000-4000-8000-000000000001",
+      "kind": "dependency",
+      "name": "Build Artifact Deployment",
+      "schemaHash": "096721066d06db2ac4be7c017173353c966f4d6407cc74e376a180ad1924fce5",
+      "contentHash": "8737c7523cc4a202274ef8c17571809867d7144a20b25ec559bdd502ae9b547a"
+    },
+    {
+      "id": "cb000000-0000-4000-8000-000000000002",
+      "kind": "rest",
+      "name": "CDN Delivery",
+      "schemaHash": "a05ec860b1dc2039ff19ff5e8e9c98f6ae0652fbd4568a4c7c8742985d233af7",
+      "contentHash": "beb7a52de5c924d0ed388f0ea7de32ab7b13c9c491aceb5de53bb43f0065bfc8"
+    },
+    {
+      "id": "cb000000-0000-4000-8000-000000000003",
+      "kind": "rest",
+      "name": "API Calls",
+      "schemaHash": "7938bdf2f249ed83f5ec8ac09d6ffc1238c18e0bcc08f9d35ccdf1c24c6da70e",
+      "contentHash": "0ee087896de8e8c1b28ec84d1b2580b8395fc89afdc58afcacc09a63a594219b"
+    },
+    {
+      "id": "cb000000-0000-4000-8000-000000000004",
+      "kind": "dependency",
+      "name": "Auth SDK",
+      "schemaHash": "1702ed773d17d6aa5a4939d3f451b341ffa05e129e42ba6fd88af55443655c41",
+      "contentHash": "991a10b74aa3aaab857293618a65281638315208903b757b786ffebc40d7b4da"
+    },
+    {
+      "id": "cbf67912-9950-4089-9edc-910af68b83a8",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "07d27738deb0e232b9e5abb48daa8b69156dd5aa5009fca1b94a24720d711595"
+    },
+    {
+      "id": "cdcdcd44-17f1-4cd0-b2b0-1cfedf1dbde8",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "f117867e0d4b158d6181ce8c231d0dd07df502e3a3ce24883698a735bc55cc0a"
+    },
+    {
+      "id": "ce468c46-c001-4001-8001-ce468c460000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "627a77bbccb6f46c2d10305eeeeef4f3b6b44c84e6e6e6bfd1b11adf13d73697"
+    },
+    {
+      "id": "ce468c46-c002-4001-8001-ce468c460000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "interactionKind": "file_transfer",
+      "transport": "http",
+      "specFormat": "custom",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "5e024fdaac47bb076a325f1ebf6fabb0b708855e460d4a067c9c36c533cf9c72"
+    },
+    {
+      "id": "ceb2dc4b-cb39-4307-89e5-d8a20bff16ec",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "fcdd26cdf6bd7ee7bfdf74c90a93c7f256a55f08fa665596829ff276b231c3e2"
+    },
+    {
+      "id": "d3f73dfd-8c4b-4136-95d4-e11926fe9e4a",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "fee7a4f2dc555fac853ba521af7ac139fcd9c9bb775bae1525a8c1f3e1cb0f1c"
+    },
+    {
+      "id": "d8df20b6-de54-43f4-9428-5f31e08ec4d2",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "a1e123c282690165a930b1884f11aef92ebf7c3b66277816faad2f9f894f7cd3"
+    },
+    {
+      "id": "da44fe62-a2c6-42b1-afe2-7ce36b6e833c",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "cf79ead379f6a633b1519f5180c23c1b800c71e1788eff26e3633ede40cdb091"
+    },
+    {
+      "id": "da6c71ec-c001-4001-8001-da6c71ec0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "47456068500b4965b06dea06625bf11fbfe0b101ba5bae386a8f4de9665101b5"
+    },
+    {
+      "id": "dab1396c-c001-4001-8001-dab1396c0000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "bee630776d375f8e5967de6bfd23d15807ee6df3210ee04f7f086271637ebd2f"
+    },
+    {
+      "id": "dab1396c-c002-4001-8001-dab1396c0000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "0c2f02bddece5d72d918f8ec53d3049ca8c73ec12b4aac5c2b0a968713e5b749"
+    },
+    {
+      "id": "db0771fe-cb60-42f8-a528-76267544e3c4",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "b313491945958fa0a6dc8d8e173be706406aec582852531b688d070b9b3ebf10"
+    },
+    {
+      "id": "dcc124e5-cdf7-4951-850f-e29a1179e741",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "4e1512d91780d0bc4e7c67e2e0d8080cdd468ae9638ca92a1beb3b48c836d3e1"
+    },
+    {
+      "id": "dd056d26-c001-4001-8001-dd056d260000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "71c2f848d3170bb80be086c0b66ced489ff51cc7e8e638b38801283466bf2f31"
+    },
+    {
+      "id": "de7f4e3d-c001-4001-8001-de7f4e3d0000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "a8053f4475b93706bf3e37e2a27592e89967af50c99a8898db5b02c552d9808d"
+    },
+    {
+      "id": "de7f4e3d-c002-4001-8001-de7f4e3d0000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "515442b72745b78a5543484d7fd4c63ca8714dcc7e9e3022be6e506a5c4bf8d0"
+    },
+    {
+      "id": "e217dc44-dae6-4a5d-a7e3-003961d62fed",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "1b09a1b3646576cbcc01e8686893b1ff1e97e15d561a3e6be5aa3f4e3440b724"
+    },
+    {
+      "id": "e24ee6e5-c001-4001-8001-e24ee6e50000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_write",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "22bbbeb641ee7864560227acc60a9ce6658b15a73fd32d72fe4d67e2ae1000b9"
+    },
+    {
+      "id": "e24ee6e5-c002-4001-8001-e24ee6e50000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "3ae9cf8538767adba66aa0cad615868834ccd4a0b8bb0f7eab9c835cedfe7495"
+    },
+    {
+      "id": "e42701e1-c001-4001-8001-e42701e10000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "76c7117f944e645c265df5c3ff142a2de24690c33e8f23b71edd2799288c23f4"
+    },
+    {
+      "id": "e42701e1-c002-4001-8001-e42701e10000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "ae6bcc4bd2b7fbd54c0e8b59605e74b459ada0981dd12d94636497afc65dbc89"
+    },
+    {
+      "id": "e526f28f-bd4f-4223-9143-fa2c8399b313",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "00a5baa9cf134532acd62fbb77adedfddade6e0f132c953b3f95c1d1a4824455"
+    },
+    {
+      "id": "e83f4538-ef95-4097-a884-fbdba57bb92e",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "c814476e9983e013dfac0d184f756d2c84d87a8f3d3a7dcd998b591b405d8762"
+    },
+    {
+      "id": "e8fc9f62-1452-48c6-9939-89fcfa4fb846",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "2abceb2864c450d453f79c021715aebd7c9b9f264928790a9556560c25488d37"
+    },
+    {
+      "id": "eb42df90-d377-468b-9209-9f58c6fdd9ec",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "0b9e83b637b9cf3c872acbb08fc964dfb04063af4f5616f6619ec103e5ba2eae"
+    },
+    {
+      "id": "ef4a47c9-fcab-40fa-afb9-540895423270",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "7001476db0799e2192b6b17d3fa30a049c64ff65de6fe2b35c3c18cd86f46494"
+    },
+    {
+      "id": "f49b6521-8d97-493f-9171-0dc349d4399e",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "0b9a0013f85ee04163927b9da116db71c431ef23aa90cd1af61b80ce9cf8f03e"
+    },
+    {
+      "id": "f4a4e045-2bed-4a0e-baed-89a1b68f91d2",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "8a2abac5c076250f375f5e8bd5f88892e0e1906f4ccad2811ca04f0857934027"
+    },
+    {
+      "id": "f4c5cf52-1d55-41c2-b23f-b839c1f87cab",
+      "kind": "custom",
+      "name": "custom contract",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "fbe72e4cf208719a69c55321d81e2fa636cf2a0117b0943f0732ebf297b8ae00"
+    },
+    {
+      "id": "f78fabb6-3085-4141-8dae-069ddbaef758",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "e165cec71b744d73d17928bea2f0d1507bd009833a853dfb8ea3c2c82a1c6bdd"
+    },
+    {
+      "id": "f791195b-b4fe-4e28-9cce-662b04542744",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "1cab6172ca5331e6d5eaa0806796cacd64dabae56ac742f973edae75b77f2360"
+    },
+    {
+      "id": "f95b0b5e-c001-4001-8001-f95b0b5e0000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "11616fc0c8990996b728b75046a6d5b0241dd849522ffc869aeee7469f5f7e02"
+    },
+    {
+      "id": "f95b0b5e-c002-4001-8001-f95b0b5e0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "0054e241066708058b98b9023e88b2cb2a218eb0334b2a33d0019dbcf9dea68e"
+    },
+    {
+      "id": "f9ba55e0-c001-4001-8001-f9ba55e00000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "948e9a36eb22a56a450fe019c15fabebdaf32be322bd1a3e3ddd17bf66e57a25"
+    },
+    {
+      "id": "f9ba55e0-c002-4001-8001-f9ba55e00000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "interactionKind": "file_transfer",
+      "transport": "http",
+      "specFormat": "custom",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "285506d64d930524865e296ba9b75e9e4a4b16456698356ed3ab8ca7d2de24e1"
+    },
+    {
+      "id": "fb84f91c-9a1a-43bb-b7d0-2534a742f36d",
+      "kind": "rest",
+      "name": "rest contract",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "27117cb6be3d777a3f0da71b8ca8d9e184c55500267fc81479bdb714a297266e"
+    },
+    {
+      "id": "fc3a8d13-98cb-4d51-8d39-b2d8a34a557a",
+      "kind": "ipc",
+      "name": "ipc contract",
+      "interactionKind": "ipc",
+      "transport": "ipc",
+      "specFormat": "custom",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "3445fb35e546f175fc86a0454b2016472e4cd65be69ac0e6998c81f872fa0ac7"
+    },
+    {
+      "id": "fcab47dc-c001-4001-8001-fcab47dc0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "cbffc40aa8bc10e56b7ba01c28e93e018124009647901271655d3b88040cc55b"
+    },
+    {
+      "id": "fcab47dc-c002-4001-8001-fcab47dc0000",
+      "kind": "ipc",
+      "name": "Stub: IPC In",
+      "interactionKind": "ipc",
+      "transport": "ipc",
+      "specFormat": "custom",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "95dc8ec7900c4efde3f7bb67fa7ff563e8466b973ce4f55e4d62e6f87d43041f"
+    },
+    {
+      "id": "fcab47dc-c003-4001-8001-fcab47dc0000",
+      "kind": "custom",
+      "name": "Stub: CUSTOM In",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "5d8c7459f1d2e5593c4bd9aa7d1195b3dba3a26790531334292b618e54590efa"
+    },
+    {
+      "id": "feab5d83-c001-4001-8001-feab5d830000",
+      "kind": "rest",
+      "name": "Stub: REST In",
+      "interactionKind": "request_response",
+      "transport": "http",
+      "specFormat": "openapi",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "e99180d2e6378c9a2dbbf23e5d08c65e7b3c0277019c44b4dc9c679e77cd2908"
+    },
+    {
+      "id": "feab5d83-c002-4001-8001-feab5d830000",
+      "kind": "sql",
+      "name": "Stub: SQL In",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "7e8beb44f1981ca5b1cc178ca999dac01b2b30743e175b4b650e45c6efe1ce36"
     }
   ],
   "artifacts": [
     {
-      "id": "b517b124-b204-48ba-ba3c-2e93340c0360",
-      "nodeId": "b0000000-0000-4000-8000-000000000a02",
-      "path": "schema",
-      "kind": "schema",
-      "contentHash": "0000000000000000"
+      "id": "0f7b08d3-7425-427d-897e-73fa6b6e43ea",
+      "nodeId": "d1a00000-0000-4000-8000-000000000001",
+      "path": ".nodespec/tasks/route-53-d1a00000.task.md",
+      "kind": "task",
+      "contentHash": "00000000735c85a6"
     },
     {
-      "id": "f0000000-1111-4111-8111-00000000000b",
-      "nodeId": "b0000000-0000-4000-8000-000000000a01",
-      "path": "tasks/api-service-tasks.md",
+      "id": "331c4b92-db4f-457b-9a0d-e1281d74c03e",
+      "nodeId": "d1a00000-0000-4000-8000-000000000003",
+      "path": ".nodespec/tasks/frontend-static-assets-d1a00000.task.md",
+      "kind": "task",
+      "contentHash": "0000000019a901be"
+    },
+    {
+      "id": "468da33f-96f3-45e0-a455-71c92507b3f2",
+      "nodeId": "fa000000-0000-4000-8000-000000000001",
+      "path": ".nodespec/tasks/frontend-app-fa000000.task.md",
+      "kind": "task",
+      "contentHash": "000000005e3280ea"
+    },
+    {
+      "id": "5c0e36e3-ee88-415e-8a73-dc5c76345cc6",
+      "nodeId": "6786618f-e1f8-476e-84b2-083ad7136691",
+      "path": "schema.sql",
+      "kind": "schema"
+    },
+    {
+      "id": "6781c96b-1452-4575-961f-df5146764f6a",
+      "nodeId": "6786618f-e1f8-476e-84b2-083ad7136691",
+      "path": "migrations/",
+      "kind": "schema"
+    },
+    {
+      "id": "74f2a336-56b6-4645-ad5c-0c0c7802164b",
+      "nodeId": "e3c00000-0000-4000-8000-000000000001",
+      "path": ".nodespec/tasks/api-gateway-e3c00000.task.md",
+      "kind": "task",
+      "contentHash": "00000000222b44f2"
+    },
+    {
+      "id": "a16156ed-9968-4aa2-b592-f8576a88a3d7",
+      "nodeId": "e3c00000-0000-4000-8000-000000000004",
+      "path": ".nodespec/tasks/job-queue-e3c00000.task.md",
+      "kind": "task",
+      "contentHash": "0000000059ce5942"
+    },
+    {
+      "id": "a16e4c4e-f3ee-42c3-bf16-cd1bb38d65ca",
+      "nodeId": "ab000000-0000-4000-8000-000000000001",
+      "path": ".nodespec/tasks/aws-ab000000.task.md",
       "kind": "task"
     },
     {
-      "id": "f0000000-1111-4111-8111-00000000000c",
-      "nodeId": "b0000000-0000-4000-8000-000000000a02",
-      "path": "tasks/primary-database-tasks.md",
+      "id": "a4a67a9c-782c-4d1f-9c65-b86dced6c54e",
+      "nodeId": "ab000000-0000-4000-8000-000000000002",
+      "path": ".nodespec/tasks/vpc-ab000000.task.md",
       "kind": "task"
+    },
+    {
+      "id": "b32eb37e-782b-4966-b569-74920a74a999",
+      "nodeId": "e3c00000-0000-4000-8000-000000000005",
+      "path": ".nodespec/tasks/application-storage-e3c00000.task.md",
+      "kind": "task",
+      "contentHash": "000000004d59c77b"
+    },
+    {
+      "id": "d681cdd4-a8ac-4249-9813-9e74ae8eb067",
+      "nodeId": "e3c00000-0000-4000-8000-000000000003",
+      "path": ".nodespec/tasks/cognito-user-pool-e3c00000.task.md",
+      "kind": "task",
+      "contentHash": "00000000519d1e84"
+    },
+    {
+      "id": "d7c96b2b-ffc6-43f7-af90-830478f586e8",
+      "nodeId": "d1a00000-0000-4000-8000-000000000002",
+      "path": ".nodespec/tasks/cloudfront-d1a00000.task.md",
+      "kind": "task",
+      "contentHash": "0000000070d88259"
+    },
+    {
+      "id": "dfe93c00-611a-4460-8dfa-910561100cd7",
+      "nodeId": "e5f00000-0000-4000-8000-000000000001",
+      "path": ".nodespec/tasks/route-53-e5f00000.task.md",
+      "kind": "task",
+      "contentHash": "0000000029a8d236"
+    },
+    {
+      "id": "e3df594a-b8e0-4c5c-87ad-8a85af4c2e19",
+      "nodeId": "e3c00000-0000-4000-8000-000000000007",
+      "path": ".nodespec/tasks/secrets-manager-e3c00000.task.md",
+      "kind": "task",
+      "contentHash": "000000001b1801df"
+    },
+    {
+      "id": "e6f0a0c9-b0d4-4125-899f-3ad1bf31f566",
+      "nodeId": "e3c00000-0000-4000-8000-000000000002",
+      "path": ".nodespec/tasks/api-functions-e3c00000.task.md",
+      "kind": "task",
+      "contentHash": "00000000330cbd0f"
+    },
+    {
+      "id": "ec58dcdf-cf4d-4284-8e48-d5588f2b98b8",
+      "nodeId": "e3c00000-0000-4000-8000-000000000006",
+      "path": ".nodespec/tasks/aws-waf-e3c00000.task.md",
+      "kind": "task",
+      "contentHash": "000000005850477a"
+    },
+    {
+      "id": "f3d9d6a2-26c7-4a79-92e2-afd03e40ebc6",
+      "nodeId": "d1a00000-0000-4000-8000-000000000006",
+      "path": ".nodespec/tasks/primary-database-d1a00000.task.md",
+      "kind": "task",
+      "contentHash": "000000000e982095"
     }
   ],
   "mappings": [
     {
-      "requirementId": "REQ-001",
+      "requirementId": "REQ-003",
       "nodeIds": [
-        "b0000000-0000-4000-8000-000000000a01",
-        "b0000000-0000-4000-8000-000000000a02"
+        "d1a00000-0000-4000-8000-000000000001"
       ]
     },
     {
-      "requirementId": "REQ-002",
+      "requirementId": "REQ-004",
       "nodeIds": [
-        "b0000000-0000-4000-8000-000000000a01"
+        "d1a00000-0000-4000-8000-000000000002",
+        "d1a00000-0000-4000-8000-000000000003"
+      ]
+    },
+    {
+      "requirementId": "REQ-005",
+      "nodeIds": [
+        "e5f00000-0000-4000-8000-000000000001"
+      ]
+    },
+    {
+      "requirementId": "REQ-006",
+      "nodeIds": [
+        "d1a00000-0000-4000-8000-000000000006"
+      ]
+    },
+    {
+      "requirementId": "REQ-007",
+      "nodeIds": [
+        "e3c00000-0000-4000-8000-000000000001"
+      ]
+    },
+    {
+      "requirementId": "REQ-008",
+      "nodeIds": [
+        "e3c00000-0000-4000-8000-000000000002",
+        "e3c00000-0000-4000-8000-000000000005"
+      ]
+    },
+    {
+      "requirementId": "REQ-009",
+      "nodeIds": [
+        "e3c00000-0000-4000-8000-000000000002"
+      ]
+    },
+    {
+      "requirementId": "REQ-010",
+      "nodeIds": [
+        "e3c00000-0000-4000-8000-000000000004"
+      ]
+    },
+    {
+      "requirementId": "REQ-011",
+      "nodeIds": [
+        "e3c00000-0000-4000-8000-000000000006"
+      ]
+    },
+    {
+      "requirementId": "REQ-012",
+      "nodeIds": [
+        "d1a00000-0000-4000-8000-000000000002"
+      ]
+    },
+    {
+      "requirementId": "REQ-013",
+      "nodeIds": [
+        "e3c00000-0000-4000-8000-000000000001"
+      ]
+    },
+    {
+      "requirementId": "REQ-014",
+      "nodeIds": [
+        "e3c00000-0000-4000-8000-000000000007"
+      ]
+    },
+    {
+      "requirementId": "REQ-015",
+      "nodeIds": [
+        "ab000000-0000-4000-8000-000000000002"
+      ]
+    },
+    {
+      "requirementId": "REQ-016",
+      "nodeIds": [
+        "d1a00000-0000-4000-8000-000000000002"
+      ]
+    },
+    {
+      "requirementId": "REQ-017",
+      "nodeIds": [
+        "e3c00000-0000-4000-8000-000000000003"
+      ]
+    },
+    {
+      "requirementId": "REQ-018",
+      "nodeIds": [
+        "fa000000-0000-4000-8000-000000000001"
+      ]
+    },
+    {
+      "requirementId": "REQ-019",
+      "nodeIds": [
+        "ab000000-0000-4000-8000-000000000001"
       ]
     }
   ]
