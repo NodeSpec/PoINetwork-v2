@@ -7,17 +7,17 @@ component inventory, connection topology, and links to per-component task docume
 
 | Component | Role | Technology | Parent | Task Document | Test Plan |
 |-----------|------|------------|--------|---------------|-----------|
-| API Service | backend-service | --- | AWS | --- | --- |
-| Primary Database | database | --- | --- | --- | --- |
+| Backend Service | backend-service | python-backend | AWS | --- | --- |
+| PostgreSQL | database | postgresql | --- | --- | --- |
 
 ## Containment Hierarchy
 
 - **AWS** (aws)
-  - **API Service** (backend-service)
-- Primary Database (database)
+  - **Backend Service** [python-backend] (backend-service)
+- PostgreSQL (database)
 
 ## Connection Topology
 
 | Source | Target | Protocol | Contract |
 |--------|--------|----------|----------|
-| API Service | Primary Database | sql | API Service → Primary Database |
+| Backend Service | PostgreSQL | sql | Python → PostgreSQL |

@@ -1,7 +1,7 @@
 {
   "modelVersion": 1,
   "generatedBy": "nodespec",
-  "modelHash": "ac6af2907466981187159340ecd4a90edcd1a8b3e5320bcb0eaa1cd07732ed2c",
+  "modelHash": "64718d1a69f9b075224eaf31b8034191ef99686e484d944e6a8d06b432f2509e",
   "nodes": [
     {
       "id": "9355fd74-42c4-4900-b2a4-e10424ceeff3",
@@ -11,118 +11,97 @@
       "contentHash": "057e6bcaa28bea90f7ce3a08bffe6a13e3f872722b0ccf1631ae2d3a88cc9227"
     },
     {
-      "id": "b0000000-0000-4000-8000-000000000a01",
+      "id": "b9d74eb9-d73a-44a6-8109-46cfb3559cde",
       "type": "backend-service",
-      "label": "API Service",
+      "label": "Backend Service",
+      "technology": "python-backend",
       "parentId": "9355fd74-42c4-4900-b2a4-e10424ceeff3",
-      "placementKind": "hosts",
       "ports": [
         {
-          "id": "b0000000-0000-4000-8000-000000000f01",
-          "name": "DB queries",
+          "id": "3c36c6fd-3ffe-426c-9bdc-6ae3e7cd4af2",
+          "name": "Cache",
+          "direction": "out"
+        },
+        {
+          "id": "6989ded7-aa34-45e2-ae4b-77fe9db06a26",
+          "name": "Service Import",
+          "direction": "in"
+        },
+        {
+          "id": "85263a7c-8ab3-40ac-8938-b9b23980fb8f",
+          "name": "HTTP In",
+          "direction": "in"
+        },
+        {
+          "id": "f517c692-3ccb-4937-bb2c-d66e82a88f39",
+          "name": "Module Dependency",
+          "direction": "out"
+        },
+        {
+          "id": "f8307374-73b1-4d91-ab5a-31addd901d74",
+          "name": "Database",
           "direction": "out"
         }
       ],
-      "contentHash": "7bfa3a6d883776e063c53e98ebed9b9234e44e7d8a980ed98b7d8b2ba880ca56"
+      "contentHash": "88c95a37c3361ea539836b753b437e33c09a4816295b7e50c6b187039c161dd8"
     },
     {
-      "id": "b0000000-0000-4000-8000-000000000a02",
+      "id": "c707fe9d-17a2-43a3-880b-a3484161ba06",
       "type": "database",
-      "label": "Primary Database",
+      "label": "PostgreSQL",
+      "technology": "postgresql",
       "ports": [
         {
-          "id": "b0000000-0000-4000-8000-000000000f02",
-          "name": "SQL interface",
+          "id": "c707fe9d-a001-4001-8001-c707fe9d0000",
+          "name": "Query",
           "direction": "in"
+        },
+        {
+          "id": "c707fe9d-a002-4002-8001-c707fe9d0000",
+          "name": "Replication",
+          "direction": "out"
         }
       ],
-      "contentHash": "3ebc66b79a41f2cd5ea9d37aa05e6521e6155d438b38fb77b3258bf3a9e6f168"
+      "contentHash": "04d0efdc9f57ab1b98a293a76884ff665884a8c45514d71a6560c59035bb89b8"
     }
   ],
   "edges": [
     {
-      "id": "21840fcb-5e40-443b-a4c5-f04e3649a758",
-      "source": "b0000000-0000-4000-8000-000000000a01",
-      "target": "b0000000-0000-4000-8000-000000000a02",
-      "contractId": "c6fbd78d-d1ab-4fd8-a2a1-92e8c0ca1ca2",
-      "sourcePortId": "b0000000-0000-4000-8000-000000000f01",
-      "targetPortId": "b0000000-0000-4000-8000-000000000f02",
-      "label": "API Service → Primary Database",
-      "contentHash": "be69745bd934710408b463184ec495e257433bdfd61177008fe3417604d05e40"
+      "id": "7dea20ff-6c04-497f-aad7-567f072b334b",
+      "source": "b9d74eb9-d73a-44a6-8109-46cfb3559cde",
+      "target": "c707fe9d-17a2-43a3-880b-a3484161ba06",
+      "contractId": "681bfb3c-78c5-43e4-b0a7-d84a1e10ba45",
+      "sourcePortId": "f517c692-3ccb-4937-bb2c-d66e82a88f39",
+      "targetPortId": "c707fe9d-a001-4001-8001-c707fe9d0000",
+      "label": "Python → PostgreSQL",
+      "contentHash": "1e2e3e892c81f581e44f16ce3bd11597c585e8f898df10d7494b9b6136e171d1"
     }
   ],
   "contracts": [
     {
-      "id": "70feb68d-c706-4574-9248-b0f7adba6cc2",
-      "kind": "rest",
-      "name": "rest contract",
-      "interactionKind": "request_response",
-      "transport": "http",
-      "specFormat": "openapi",
-      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "contentHash": "eaf9689f800dce1497ef4b8ef301fea8c1f0178d03c2083493fc801df94cac99"
-    },
-    {
-      "id": "77779e2b-d905-412f-b40e-f11354a61402",
-      "kind": "amqp",
-      "name": "amqp contract",
-      "interactionKind": "queue",
-      "transport": "amqp",
-      "specFormat": "asyncapi",
-      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "contentHash": "c34b822c09c0ac1553635dc18439a27c04b90a75c3a70355384983fdce977434"
-    },
-    {
-      "id": "b0000000-0000-4000-8000-000000000c01",
+      "id": "681bfb3c-78c5-43e4-b0a7-d84a1e10ba45",
       "kind": "sql",
-      "name": "Task storage queries",
-      "contentHash": "255f67651c68b14403d41e05b487a4810a277ca664f2af0929e111fb1f63dafb"
-    },
-    {
-      "id": "b0834d5a-c001-4001-8001-b0834d5a0000",
-      "kind": "amqp",
-      "name": "Stub: AMQP In",
-      "interactionKind": "queue",
-      "transport": "amqp",
-      "specFormat": "asyncapi",
-      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "contentHash": "9a7b1ffb281f69f23e32b42a9052da19879c736119f808ff3081d860b40effa5"
-    },
-    {
-      "id": "c6fbd78d-d1ab-4fd8-a2a1-92e8c0ca1ca2",
-      "kind": "sql",
-      "name": "API Service → Primary Database",
+      "name": "Python → PostgreSQL",
       "interactionKind": "data_read",
       "transport": "http",
       "specFormat": "json_schema",
       "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "contentHash": "8cb36c683ecae87ecf159563efd43a6d2950a1d28cd33b6c8cf60163a0ef7201"
-    },
-    {
-      "id": "fcfd2c70-c001-4001-8001-fcfd2c700000",
-      "kind": "dependency",
-      "name": "Stub: DEPENDENCY In",
-      "interactionKind": "dependency",
-      "transport": "none",
-      "specFormat": "none",
-      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "contentHash": "a6108a80f56bc21eff3d3a104a812bfc9d9e45d62e1cba7ea3b393e31eed6ba6"
+      "contentHash": "f0b0708459b16c5fd5e56d2847dfafadf4f7e98e6b4100a0b72fd91f9cf8ae3e"
     }
   ],
-  "artifacts": [],
-  "mappings": [
+  "artifacts": [
     {
-      "requirementId": "REQ-001",
-      "nodeIds": [
-        "b0000000-0000-4000-8000-000000000a01",
-        "b0000000-0000-4000-8000-000000000a02"
-      ]
+      "id": "a740a403-4c5c-4f34-a7c9-0c6f321bfb9a",
+      "nodeId": "c707fe9d-17a2-43a3-880b-a3484161ba06",
+      "path": "schema.sql",
+      "kind": "schema"
     },
     {
-      "requirementId": "REQ-002",
-      "nodeIds": [
-        "b0000000-0000-4000-8000-000000000a01"
-      ]
+      "id": "c88f7688-4cd5-46bc-ac92-fa1100d8c5f1",
+      "nodeId": "c707fe9d-17a2-43a3-880b-a3484161ba06",
+      "path": "migrations/",
+      "kind": "schema"
     }
-  ]
+  ],
+  "mappings": []
 }
