@@ -1,7 +1,7 @@
 {
   "modelVersion": 1,
   "generatedBy": "nodespec",
-  "modelHash": "b05d12daef5455beb5957617c52afbb03e69d1b7376b6c56660eac68963c2012",
+  "modelHash": "ac6af2907466981187159340ecd4a90edcd1a8b3e5320bcb0eaa1cd07732ed2c",
   "nodes": [
     {
       "id": "9355fd74-42c4-4900-b2a4-e10424ceeff3",
@@ -41,14 +41,14 @@
   ],
   "edges": [
     {
-      "id": "583e5025-eed0-404e-b4b9-274d9ccb03dd",
+      "id": "21840fcb-5e40-443b-a4c5-f04e3649a758",
       "source": "b0000000-0000-4000-8000-000000000a01",
       "target": "b0000000-0000-4000-8000-000000000a02",
-      "contractId": "8b12cd9d-5762-4832-aede-7be31b037e50",
+      "contractId": "c6fbd78d-d1ab-4fd8-a2a1-92e8c0ca1ca2",
       "sourcePortId": "b0000000-0000-4000-8000-000000000f01",
       "targetPortId": "b0000000-0000-4000-8000-000000000f02",
       "label": "API Service → Primary Database",
-      "contentHash": "fcdf2566539478822cf687d8a29da8991b70d89f78c9a2098a805f7dc2a4fefc"
+      "contentHash": "be69745bd934710408b463184ec495e257433bdfd61177008fe3417604d05e40"
     }
   ],
   "contracts": [
@@ -73,16 +73,6 @@
       "contentHash": "c34b822c09c0ac1553635dc18439a27c04b90a75c3a70355384983fdce977434"
     },
     {
-      "id": "8b12cd9d-5762-4832-aede-7be31b037e50",
-      "kind": "sql",
-      "name": "API Service → Primary Database",
-      "interactionKind": "data_read",
-      "transport": "http",
-      "specFormat": "json_schema",
-      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "contentHash": "d59d6f38ccc42c1f3aa5e77bd224034ce676704f8788516c5cb656f7bc6d6c1b"
-    },
-    {
       "id": "b0000000-0000-4000-8000-000000000c01",
       "kind": "sql",
       "name": "Task storage queries",
@@ -97,6 +87,16 @@
       "specFormat": "asyncapi",
       "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
       "contentHash": "9a7b1ffb281f69f23e32b42a9052da19879c736119f808ff3081d860b40effa5"
+    },
+    {
+      "id": "c6fbd78d-d1ab-4fd8-a2a1-92e8c0ca1ca2",
+      "kind": "sql",
+      "name": "API Service → Primary Database",
+      "interactionKind": "data_read",
+      "transport": "http",
+      "specFormat": "json_schema",
+      "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentHash": "8cb36c683ecae87ecf159563efd43a6d2950a1d28cd33b6c8cf60163a0ef7201"
     },
     {
       "id": "fcfd2c70-c001-4001-8001-fcfd2c700000",
