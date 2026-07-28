@@ -1,7 +1,7 @@
 {
   "modelVersion": 1,
   "generatedBy": "nodespec",
-  "modelHash": "64718d1a69f9b075224eaf31b8034191ef99686e484d944e6a8d06b432f2509e",
+  "modelHash": "28030df4dc0680fda61e569c821f508f09ad73be06f836c51796bb0a7cbcceed",
   "nodes": [
     {
       "id": "9355fd74-42c4-4900-b2a4-e10424ceeff3",
@@ -67,26 +67,26 @@
   ],
   "edges": [
     {
-      "id": "7dea20ff-6c04-497f-aad7-567f072b334b",
+      "id": "24d4921d-2d69-4005-bd39-59af23565249",
       "source": "b9d74eb9-d73a-44a6-8109-46cfb3559cde",
       "target": "c707fe9d-17a2-43a3-880b-a3484161ba06",
-      "contractId": "681bfb3c-78c5-43e4-b0a7-d84a1e10ba45",
+      "contractId": "4a20bb07-da0d-4db4-b823-8207cbdb74df",
       "sourcePortId": "f517c692-3ccb-4937-bb2c-d66e82a88f39",
       "targetPortId": "c707fe9d-a001-4001-8001-c707fe9d0000",
-      "label": "Python → PostgreSQL",
-      "contentHash": "1e2e3e892c81f581e44f16ce3bd11597c585e8f898df10d7494b9b6136e171d1"
+      "label": "Backend Service → PostgreSQL",
+      "contentHash": "6f0529da274d9cf8c1a9899a8b6fca610660453d2322a67fb2c3a452b718b625"
     }
   ],
   "contracts": [
     {
-      "id": "681bfb3c-78c5-43e4-b0a7-d84a1e10ba45",
+      "id": "4a20bb07-da0d-4db4-b823-8207cbdb74df",
       "kind": "sql",
-      "name": "Python → PostgreSQL",
+      "name": "Backend Service → PostgreSQL",
       "interactionKind": "data_read",
-      "transport": "http",
-      "specFormat": "json_schema",
+      "transport": "sql",
+      "specFormat": "sql_ddl",
       "schemaHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "contentHash": "f0b0708459b16c5fd5e56d2847dfafadf4f7e98e6b4100a0b72fd91f9cf8ae3e"
+      "contentHash": "cf5bf3f3726463e7749a5ab94a2f8fa10a14a84ee0cf045315aaaa925ace3ee5"
     }
   ],
   "artifacts": [

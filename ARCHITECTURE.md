@@ -20,4 +20,4 @@ component inventory, connection topology, and links to per-component task docume
 
 | Source | Target | Protocol | Contract |
 |--------|--------|----------|----------|
-| Backend Service | PostgreSQL | sql | Python → PostgreSQL |
+| Backend Service | PostgreSQL | sql | Backend Service → PostgreSQL |
